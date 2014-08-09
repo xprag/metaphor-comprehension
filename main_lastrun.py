@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.80.03), Sat Aug  9 12:33:43 2014
+This experiment was created using PsychoPy2 Experiment Builder (v1.80.03), Sat Aug  9 12:51:30 2014
 If you publish work using this script please cite the relevant PsychoPy publications
   Peirce, JW (2007) PsychoPy - Psychophysics software in Python. Journal of Neuroscience Methods, 162(1-2), 8-13.
   Peirce, JW (2009) Generating stimuli for neuroscience using PsychoPy. Frontiers in Neuroinformatics, 2:10. doi: 10.3389/neuro.11.010.2008
@@ -16,7 +16,7 @@ from numpy.random import random, randint, normal, shuffle
 import os  # handy system and path functions
 
 # Store info about the experiment session
-expName = u'main'  # from the Builder filename that created this script
+expName = 'main'  # from the Builder filename that created this script
 expInfo = {u'participant': u'1', u'Name': u'Leo'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False: core.quit()  # user pressed cancel
@@ -42,8 +42,8 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 
 # Setup the Window
 win = visual.Window(size=(1280, 800), fullscr=True, screen=0, allowGUI=False, allowStencil=False,
-    monitor=u'testMonitor', color=[0,0,0], colorSpace=u'rgb',
-    blendMode=u'avg', useFBO=True,
+    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
+    blendMode='avg', useFBO=True,
     )
 # store frame rate of monitor if we can measure it successfully
 expInfo['frameRate']=win.getActualFrameRate()
@@ -56,9 +56,9 @@ else:
 trialClock = core.Clock()
 ISI = core.StaticPeriod(win=win, screenHz=expInfo['frameRate'], name='ISI')
 Introduction = visual.TextStim(win=win, ori=0, name='Introduction',
-    text=u"Benvenuti!\n\nState per iniziare un esperimento composto da due parti. \nOgni parte \xe8 introdotta dalle istruzioni che vi spiegheranno ci\xf2 che dovete fare in seguito.\nAlla fine della prima parte, ci sar\xe0 una piccola pausa indicata da un messaggio. Grazie per la vostra partecipazione all'esperimento!",    font=u'Arial',
+    text=u"Benvenuti!\n\nState per iniziare un esperimento composto da due parti. \nOgni parte \xe8 introdotta dalle istruzioni che vi spiegheranno ci\xf2 che dovete fare in seguito.\nAlla fine della prima parte, ci sar\xe0 una piccola pausa indicata da un messaggio. Grazie per la vostra partecipazione all'esperimento!",    font='Arial',
     pos=[0, 0], height=0.1, wrapWidth=None,
-    color=u'white', colorSpace=u'rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1,
     depth=-1.0)
 
 # Initialize components for Routine "arguments"
@@ -190,7 +190,11 @@ for thisTrial in trials:
     argumentsClock.reset()  # clock 
     frameN = -1
     # update component parameters for each repeat
-    text.setText(Argument)
+    text.setText('P1: ' + premise1 + 
+'\n\n' + 
+'P2: ' + premise2 +
+'\n_______________________________\n\n' +
+'C: ' + conclusion)
     key_resp_2 = event.BuilderKeyResponse()  # create an object of type KeyResponse
     key_resp_2.status = NOT_STARTED
     # keep track of which components have finished
