@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.80.03), Sat Aug  9 12:05:17 2014
+This experiment was created using PsychoPy2 Experiment Builder (v1.80.03), Sat Aug  9 12:31:59 2014
 If you publish work using this script please cite the relevant PsychoPy publications
   Peirce, JW (2007) PsychoPy - Psychophysics software in Python. Journal of Neuroscience Methods, 162(1-2), 8-13.
   Peirce, JW (2009) Generating stimuli for neuroscience using PsychoPy. Frontiers in Neuroinformatics, 2:10. doi: 10.3389/neuro.11.010.2008
@@ -191,9 +191,12 @@ for thisTrial in trials:
     frameN = -1
     # update component parameters for each repeat
     text.setText(Argument)
+    key_resp_2 = event.BuilderKeyResponse()  # create an object of type KeyResponse
+    key_resp_2.status = NOT_STARTED
     # keep track of which components have finished
     argumentsComponents = []
     argumentsComponents.append(text)
+    argumentsComponents.append(key_resp_2)
     for thisComponent in argumentsComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -212,6 +215,27 @@ for thisTrial in trials:
             text.tStart = t  # underestimates by a little under one frame
             text.frameNStart = frameN  # exact frame index
             text.setAutoDraw(True)
+        
+        # *key_resp_2* updates
+        if t >= 0.0 and key_resp_2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_resp_2.tStart = t  # underestimates by a little under one frame
+            key_resp_2.frameNStart = frameN  # exact frame index
+            key_resp_2.status = STARTED
+            # keyboard checking is just starting
+            key_resp_2.clock.reset()  # now t=0
+            event.clearEvents(eventType='keyboard')
+        if key_resp_2.status == STARTED:
+            theseKeys = event.getKeys(keyList=['y', 'n', 'left', 'right', 'space'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                key_resp_2.keys = theseKeys[-1]  # just the last key pressed
+                key_resp_2.rt = key_resp_2.clock.getTime()
+                # a response ends the routine
+                continueRoutine = False
         
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -237,6 +261,13 @@ for thisTrial in trials:
     for thisComponent in argumentsComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
+    # check responses
+    if key_resp_2.keys in ['', [], None]:  # No response was made
+       key_resp_2.keys=None
+    # store data for trials (TrialHandler)
+    trials.addData('key_resp_2.keys',key_resp_2.keys)
+    if key_resp_2.keys != None:  # we had a response
+        trials.addData('key_resp_2.rt', key_resp_2.rt)
     thisExp.nextEntry()
     
 # completed 5 repeats of 'trials'
