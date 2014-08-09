@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.80.03), Sat Aug  9 10:32:53 2014
+This experiment was created using PsychoPy2 Experiment Builder (v1.80.03), Sat Aug  9 12:05:17 2014
 If you publish work using this script please cite the relevant PsychoPy publications
   Peirce, JW (2007) PsychoPy - Psychophysics software in Python. Journal of Neuroscience Methods, 162(1-2), 8-13.
   Peirce, JW (2009) Generating stimuli for neuroscience using PsychoPy. Frontiers in Neuroinformatics, 2:10. doi: 10.3389/neuro.11.010.2008
@@ -60,6 +60,14 @@ Introduction = visual.TextStim(win=win, ori=0, name='Introduction',
     pos=[0, 0], height=0.1, wrapWidth=None,
     color=u'white', colorSpace=u'rgb', opacity=1,
     depth=-1.0)
+
+# Initialize components for Routine "arguments"
+argumentsClock = core.Clock()
+text = visual.TextStim(win=win, ori=0, name='text',
+    text='default text',    font=u'Arial',
+    pos=[0, 0], height=0.1, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=0.0)
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -157,5 +165,81 @@ thisExp.addData('response.keys',response.keys)
 if response.keys != None:  # we had a response
     thisExp.addData('response.rt', response.rt)
 thisExp.nextEntry()
+
+# set up handler to look after randomisation of conditions etc
+trials = data.TrialHandler(nReps=5, method=u'random', 
+    extraInfo=expInfo, originPath=u'/Users/antonio/Sites/languageguide/metaphor-comprehension/main.psyexp',
+    trialList=data.importConditions(u'stimuli/arguments.xlsx'),
+    seed=None, name='trials')
+thisExp.addLoop(trials)  # add the loop to the experiment
+thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb=thisTrial.rgb)
+if thisTrial != None:
+    for paramName in thisTrial.keys():
+        exec(paramName + '= thisTrial.' + paramName)
+
+for thisTrial in trials:
+    currentLoop = trials
+    # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
+    if thisTrial != None:
+        for paramName in thisTrial.keys():
+            exec(paramName + '= thisTrial.' + paramName)
+    
+    #------Prepare to start Routine "arguments"-------
+    t = 0
+    argumentsClock.reset()  # clock 
+    frameN = -1
+    # update component parameters for each repeat
+    text.setText(Argument)
+    # keep track of which components have finished
+    argumentsComponents = []
+    argumentsComponents.append(text)
+    for thisComponent in argumentsComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    #-------Start Routine "arguments"-------
+    continueRoutine = True
+    while continueRoutine:
+        # get current time
+        t = argumentsClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *text* updates
+        if t >= 0.0 and text.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            text.tStart = t  # underestimates by a little under one frame
+            text.frameNStart = frameN  # exact frame index
+            text.setAutoDraw(True)
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            routineTimer.reset()  # if we abort early the non-slip timer needs reset
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in argumentsComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # check for quit (the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+        else:  # this Routine was not non-slip safe so reset non-slip timer
+            routineTimer.reset()
+    
+    #-------Ending Routine "arguments"-------
+    for thisComponent in argumentsComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    thisExp.nextEntry()
+    
+# completed 5 repeats of 'trials'
+
 win.close()
 core.quit()
