@@ -1,7 +1,6 @@
 ### TODO List
-1. Fix the accented character got from the stimuli file.
-2. Divide the Argument column in three columns (arguent-p1, arguemnt-p2, argument-c)
-3. Update the experiment setting adding the following fields: Sex, Age, ...
+1. Update the experiment setting adding the following fields: Sex, Age, ...
+2. Change the colour of solution into feedback routine (maybe it should be possible to do it into python code).
 
 ### Issues fixed
 1. ####conditionsFile
