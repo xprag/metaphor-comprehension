@@ -1,0 +1,55 @@
+FillerBlock,FillerNumber,CorrectAnswer,Filler,TW
+T,1,Y,Il cane rincorre il ... |Il ...  Ë un felino |Il cane rincorre un felino,GATTO
+T,2,Y,Lucia Ë la ... |La ... Ë vestita di bianco |Lucia Ë vestita di bianco,SPOSA
+T,3,Y,Il comodino Ë un Ö|Un ... Ë un oggetto |Il comodino Ë un oggetto,MOBILE
+T,4,Y,Silvestro rincorre l'... |L'... Ë Titti |Silvestro rincorre Titti,UCCELLO
+T,5,Y,Erika Ë una ... |Una ... Ë femmina |Erika Ë femmina,RAGAZZA
+T,6,Y,L'anguilla Ë un ... |Un ... vive in acqua |L'anguilla vive in acqua,PESCE
+T,7,Y,Una farmacia Ë un ... |Un ... Ë un locale |Una farmacia Ë un locale,NEGOZIO
+T,8,Y,Brad Pitt Ë una ... |Una ... Ë un essere umano |Brad Pitt Ë un essere umano,PERSONA
+T,9,Y,Walter studia ... |... Ë una disciplina |Walter studia una disciplina,CINEMA
+T,10,Y,Chiara adora la ... |La ... Ë un'area sabbiosa |Chiara adora un'area sabbiosa,SPIAGGIA
+T,11,Y,Silvio possiede una ... |Una ... Ë una grande casa |Silvio possiede una grande casa,VILLA
+T,12,Y,Carla ha sposato il ... |Il ... Ë un uomo |Carla ha sposato un uomo,MARITO
+T,13,Y,Il Louvre Ë un ... |Un ... espone oggetti |Il Louvre espone oggetti,MUSEO
+T,14,Y,Mario lancia la ... |La ... Ë un minerale |Mario lancia un minerale,PIETRA
+T,15,Y,La mamma prepara il ... |Il ... Ë un pasto |La mamma prepara un pasto,PRANZO
+T,16,Y,Giuseppe tocca la ... |La ... Ë un oggetto freddo |Giuseppe tocca un oggetto freddo,NEVE
+T,17,Y,Il Medioevo Ë un'... |Un'... Ë un periodo storico |Il Medioevo Ë un periodo storico,EPOCA
+T,18,Y,L'Italia Ë una ... |Una ... ha dei cittadini |L'Italia ha dei cittadini,NAZIONE
+T,19,Y,Alice cura il ... |Il ... Ë uno spazio erboso |Alice cura uno spazio erboso,PRATO
+T,20,Y,Dario china la ... |La ... Ë una parte del corpo |Dario china una parte del corpo,SCHIENA
+T,21,Y,La mucca produce il ... |Il ... Ë un alimento |La mucca produce un alimento,LATTE
+T,22,Y,Matteo indossa la ... |La ... Ë un indumento |Matteo indossa un indumento,GIACCA
+T,23,Y,La casa ha il ... |Il ... Ë una sporgenza |La casa ha una sporgenza,BALCONE
+T,24,Y,La mostra espone un ... |Un ... Ë un dipinto |La mostra espone un dipinto,RITRATTO
+T,25,Y,Il pantalone ha la ... |La ... Ë una parte interna |Il pantalone ha una parte interna,TASCA
+T,1,N,Claudio odia il ... |Il ... muove i mulini |Claudio muove i mulini,VENTO
+T,2,N,Mario dipinge una ... |Una ... Ë un messaggio |Mario Ë un messaggio,SCRITTA
+T,3,N,Chiara ha una ... |Una ... Ë la moglie dello zio |Chiara Ë la moglie dello zio,ZIA
+T,4,N,Carlotta ha una ... |Una ... Ë piccola |Carlotta Ë piccola,BAMBINA
+T,5,N,I cavalli trainano la ... |La ... ha quattro ruote |I cavalli hanno quattro ruote,CARROZZA
+T,6,N,Carla possiede una ... |Una ... ha quattro gambe |Carla ha quattro gambe,SEDIA
+T,7,N,L'alcolista beve il ... |Il ... contiene alcool |L'alcolista contiene alcool,LIQUORE
+T,8,N,Il bambino chiama uno ... |Uno ... va al liceo |Il bambino va al liceo,STUDENTE
+T,9,N,Carlo trascina la ... |La ... ha le ruote |Carlo ha le ruote,VALIGIA
+T,10,N,Il lunedç inizia la ... |La ... ha sette giorni |Il lunedç ha sette giorni,SETTIMANA
+T,11,N,Marco regala una ... |Una ... Ë una scodella |Marco Ë una scodella,TAZZA
+T,12,N,L'amico regala la ... |La ... ha i bottoni |L'amico ha i bottoni,CAMICIA
+T,13,N,Il giornalista scrive il ... |Il ... Ë fatto da articoli |Il giornalista Ë fatto da articoli,GIORNALE
+T,14,N,Andrea mangia l'... |L'... Ë un agrume |Andrea Ë un agrume,ARANCIA
+T,15,N,La nonna prepara la ... |La ... Ë un pasto |La nonna Ë un pasto,CENA
+T,16,N,L'uva d‡ il ... |Il ... Ë una bevanda |L'uva Ë una bevanda,VINO
+T,17,N,Melania mangia la ... |La ... Ë un frutto |Melania Ë un frutto,MELA
+T,18,N,La salsa contiene il ... |Il ... Ë un ortaggio |La salsa Ë un ortaggio,POMODORO
+T,19,N,La sarta rammenda il ... |Il ... Ë un indumento |La sarta Ë un indumento,VESTITO
+T,20,N,L'opinionista ha un'... |Un'... Ë un'idea |L'opinionista Ë un'idea,OPINIONE
+T,21,N,Ogni negozio ha un ... |Un ... ha sempre ragione |Ogni negozio ha sempre ragione,CLIENTE
+T,22,N,Giuseppe richiama un ... |Un ... Ë un militare |Giuseppe Ë un militare,TENENTE
+T,23,N,Caterina aspetta la ... |La ... Ë fatta di ore |Caterina Ë fatta di ore,SERA
+T,24,N,Il parrucchiere cura il ... |Il ... Ë liscio |Il parrucchiere Ë liscio,CAPELLO
+T,25,N,La nipotina visita la ... |La ... ha sessant'anni|La nipotina ha sessant'anni,NONNA
+P,1,Y,Franco studia ...  |... Ë una scienza |Franco studia una scienza,MEDICINA
+P,2,Y,La raffineria lavora il ... |Il ... Ë una miscela oleosa |La raffineria lavora una miscela oleosa,PETROLIO
+P,1,N,Mario guarda una ... |Una ... ha forma arrotondata |Mario ha forma arrotondata,COLLINA
+P,2,N,Luigi ha una ... |Una ... Ë una donna sposata |Luigi Ë una donna sposata,MOGLIE
