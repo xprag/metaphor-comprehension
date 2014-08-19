@@ -24,14 +24,12 @@ class ShuffleRows:
 		# If the experiment is divided in two parts then the keys will be half
 		self._key_dict = []
 		self._set_dict()
-		# for key in sorted(self._dict_arguments.keys()):
-		# 	print key , ', ' , len(self._dict_arguments[key])
-		# print self._key_dict.count('T_P_TPPC'), self._key_dict.count('P')
-		self._key_dict = self._remove_half_values(self._key_dict)
-		# print self._key_dict.count('T_P_TPPC'), self._key_dict.count('P')
-		# print self._key_dict
-		# print self._dict_arguments.keys()
-		self._write_file_output()
+		# It contains the key values of self._dict_arguments with duplicated values for each argument for the right hand
+		_key_dict_right = self._remove_half_values(self._key_dict)
+		# It contains the key values of self._dict_arguments with duplicated values for each argument for the left hand
+		_key_dict_left = [] + _key_dict_right
+		self._write_file_output(_key_dict_right)
+		self._write_file_output(_key_dict_left)
 
 	# It read the line from the input_file and return a list containing these values shuffles except the first-one (header)
 	def _get_rows(self, filename):
@@ -40,7 +38,6 @@ class ShuffleRows:
 			rows = f.readlines()
 		# It contains the list of the column names read from the file_input and which will be written in the file_output
 		self._arguments_header = rows.pop(0)
-		random.shuffle(rows)
 		return rows
 
 	def _get_rows_shuffle(self):
@@ -85,16 +82,19 @@ class ShuffleRows:
 
 	# It loops reads the arguments from _dict_arguments by means of _key_dict
 	# The read arguments are removed
-	def _write_file_output(self):
+	def _write_file_output(self, key_dict):
+		random.shuffle(key_dict)
 		print self._arguments_header
 		# It loops just the arguments which class is 'P'
-		while self._key_dict.count('P') > 0:
-			print self._dict_arguments['P'].pop()[3]
-			self._key_dict.remove('P')
+		while key_dict.count('P') > 0:
+			line = self._dict_arguments['P'].pop()
+			print line[0], line[3]
+			key_dict.remove('P')
 		# It loops the arguments which class begins with 'T'
-		while len(self._key_dict) > 0:
-			key = self._key_dict.pop()
-			print self._dict_arguments[key].pop()[3]
+		while len(key_dict) > 0:
+			key = key_dict.pop()
+			line = self._dict_arguments[key].pop()
+			print line[0], line[3], key
 
 file_input = '../stimuli/arguments.csv'
 file_output = '/tmp/arguments.csv'
