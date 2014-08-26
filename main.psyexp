@@ -68,6 +68,14 @@
         <Param name="startVal" val="0.5" valType="code" updates="None"/>
         <Param name="store" val="last key" valType="str" updates="constant"/>
       </KeyboardComponent>
+      <CodeComponent name="code">
+        <Param name="Begin Experiment" val="import utils.shuffleRows as shuffleRows&#10;file_input = ['./stimuli/arguments.csv', './stimuli/distractors.csv']&#10;file_output = '/tmp/arguments.csv'&#10;shuffleRows.ShuffleRows(file_input, file_output)" valType="extendedCode" updates="constant"/>
+        <Param name="name" val="code" valType="code" updates="None"/>
+        <Param name="Each Frame" val="" valType="extendedCode" updates="constant"/>
+        <Param name="Begin Routine" val="" valType="extendedCode" updates="constant"/>
+        <Param name="End Routine" val="" valType="extendedCode" updates="constant"/>
+        <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
+      </CodeComponent>
     </Routine>
     <Routine name="question">
       <TextComponent name="question_text">
