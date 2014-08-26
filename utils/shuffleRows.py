@@ -174,6 +174,3 @@ class ShuffleRows:
 
 		return string2write
 
-file_input = ['./stimuli/arguments.csv', './stimuli/distractors.csv']
-file_output = '/tmp/arguments.csv'
-shuffleRows = ShuffleRows(file_input, file_output)
