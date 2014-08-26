@@ -101,19 +101,34 @@ class ShuffleRows:
 		        list_.remove(value)
 		return list_
 
-	# TODO a better implementation should use just append and shuffle and not random
-	# in this way you can optimize the number of distractors
-	# when the number of tests is not divisible by the number of distractors
-	def _get_key_dict_distracted(self, key_dict, key_src = 'P-distracted', random_num = 3, distractors_num = 2):
+	# This method takes a list "key_list" and then for a specific number of items "items_num" 
+	# it adds a specific number of other items "items2add_num"
+	# which key is specified into "key2add_name" parameter
+	# Example: each three items it should add randomly two items which value is 'test'
+	# ex1: ['test', 'a', 'test', 'b', 'c', 'test', 'd', 'e', 'f', 'test',]
+	# ex2: ['a', 'b', 'c', 'test', 'test', 'test', 'test', 'd', 'e', 'f']
+	def _get_key_mixed(self, key_list = ['a', 'b', 'c', 'd', 'e', 'f'], items_num = 3, items2add_num = 2, key2add_name = 'test'):
 		# distractors_num = len(self._dict_arguments[key_src]) / 2
-		i = 0
-		while i < distractors_num:
-			range_num = range(i * random_num, random_num + (random_num * i))
-			key_dict.insert(random.choice(range_num), key_src)
-			i = i + 1
+		print 'len(key_list): ', len(key_list)
+		item_start = 0
+		item_step = items_num
+		item_end = item_step
+		key_list_length = len(key_list)
+		key_list_result = []
 
-		# key_dict_prova.insert(random.choice(range_num), l.pop(5))
-		return key_dict
+		while item_end < key_list_length + 1:
+			key_list_tmp = key_list[item_start: item_end]
+			print item_start, item_end
+			i = 0
+			while i < items2add_num:
+				key_list_tmp.append(key2add_name)
+				i = i + 1
+			random.shuffle(key_list_tmp)
+			key_list_result = key_list_result + key_list_tmp
+			item_start = item_end
+			item_end = item_end + item_step
+		return key_list_result
+
 
 	def _write_lines(self, dictionary):
 		# TODO write into a output file
@@ -129,26 +144,38 @@ class ShuffleRows:
 
 		key_dict.sort()
 
-		key_dict_trial = self._get_key_dict_distracted(
-			key_dict[:4],
-			key_src = 'P-distracted',
-			random_num = 3,
-			distractors_num = 2)
+		key_list_trial = self._get_key_mixed(
+			key_list = key_dict[:4], # it gets all the keys (four) which name is 'P' because the items has been sorted
+			items_num = 2,
+			items2add_num = 1,
+			key2add_name = 'P-distracted'
+			)
 
-		key_dict_test_1 = self._get_key_dict_distracted(key_dict[4:20],
-			'T-distracted',
-			random_num = 3,
-			distractors_num = 6)
+		self._write_lines(key_list_trial)
+		print '------ 6:', len(key_list_trial)
 
-		key_dict_test_2 = self._get_key_dict_distracted(key_dict[20:],
-			'T-distracted',
-			random_num = 2,
-			distractors_num = 19)
+		# I need to distribute randomly 25 items 'T-distractors' inside a list of 36 items 'T-****'
+		# I can divide the 36 items and the 25 items 'T-distractors' into two parts:
 
-		key_dict_test = key_dict_test_1 + key_dict_test_2
+		# First part: 21 'T-****' vs 15 'T-distractors' -> 7/5; the probability density will be about 66%
+		key_list_test1 = self._get_key_mixed(
+			key_list = key_dict[4:25], # it gets the first 21 items which name is 'T-****' because the items has been sorted
+			items_num = 7,
+			items2add_num = 5,
+			key2add_name = 'T-distracted'
+			)
+		print '------ 36:', len(key_list_test1)
 
-		self._write_lines(key_dict_trial)
-		self._write_lines(key_dict_test)
+		# Second part: 15 'T-****' vs 10 'T-distractors' -> 3/2; the probability density will be about 71%
+		key_list_test2 = self._get_key_mixed(
+			key_list = key_dict[25:], # it gets the last 15 items which name is 'T-****' because the items has been sorted
+			items_num = 3,
+			items2add_num = 2,
+			key2add_name = 'T-distracted'
+			)
+		print '------- 25:', len(key_list_test2)
+		key_list_test = key_list_test2 + key_list_test1
+		self._write_lines(key_list_test)
 
 file_input = ['../stimuli/arguments.csv', '../stimuli/distractors.csv']
 file_output = '/tmp/arguments.csv'
