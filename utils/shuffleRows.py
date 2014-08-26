@@ -25,6 +25,7 @@ class ShuffleRows:
 	# 2 self._dict_arguments that contains the argument which are shuffled
 
 	def __init__(self, file_input, file_output):
+		self._file_output = file_output
 		self._key_separator = '_'
 		# list of the lines read from the file_input except the first-one (header)
 		self._lines = self._get_rows(file_input)
@@ -40,17 +41,22 @@ class ShuffleRows:
 		_key_dict_right = self._remove_half_values(self._key_dict)
 		# It contains the key values of self._dict_arguments with duplicated values for each argument for the left hand
 		_key_dict_left = [] + _key_dict_right
-		self._write_file_output(_key_dict_right)
-		self._write_file_output(_key_dict_left)
+		self._string2write = self._arguments_header # it contains just the header of stimuli files
+		self._string2write = self._string2write + self._get_string2write(_key_dict_right)
+		self._string2write = self._string2write + self._get_string2write(_key_dict_left)
+		ouptup_file = codecs.open(self._file_output, mode='w', encoding='utf-8')
+		ouptup_file.write(self._string2write )
+		print 'The stimuli file is available at this location: ', self._file_output
+
 
 	# It read the line from the input_file and return a list containing these values shuffles except the first-one (header)
 	def _get_rows(self, filenames):
 		# TODO implement pathname manipulations "os.path"
 		rows = []
 		for filename in filenames:
-			with self._open_file(filename) as f:
+			with codecs.open(filename, encoding='utf-8') as f:
 				lines = f.readlines()
-				lines.pop(0) # the first rows are just the header and it will be removed
+				self._arguments_header = lines.pop(0) # the first rows are just the header and it will be removed
 				rows = rows + lines
 			# It contains the list of the column names read from the file_input and which will be written in the file_output
 			# self._arguments_header = rows.pop(0)
@@ -85,9 +91,6 @@ class ShuffleRows:
 			else:
 				self._dict_arguments[key] = [columns]
 
-	def _open_file(self, file_name):
-		return codecs.open(file_name, encoding='latin-1')
-
     # It removes half parts of duplicated elements from a list
     # example:
     # *input* my_array = [‘a’, ‘a’, ‘a’, ‘a’, ‘a’, ‘a’, ‘b’, ‘b’, ‘b’, ‘b’, ‘b’, ‘b’]
@@ -109,7 +112,7 @@ class ShuffleRows:
 	# ex2: ['a', 'b', 'c', 'test', 'test', 'test', 'test', 'd', 'e', 'f']
 	def _get_key_mixed(self, key_list = ['a', 'b', 'c', 'd', 'e', 'f'], items_num = 3, items2add_num = 2, key2add_name = 'test'):
 		# distractors_num = len(self._dict_arguments[key_src]) / 2
-		print 'len(key_list): ', len(key_list)
+		# print 'len(key_list): ', len(key_list)
 		item_start = 0
 		item_step = items_num
 		item_end = item_step
@@ -118,7 +121,6 @@ class ShuffleRows:
 
 		while item_end < key_list_length + 1:
 			key_list_tmp = key_list[item_start: item_end]
-			print item_start, item_end
 			i = 0
 			while i < items2add_num:
 				key_list_tmp.append(key2add_name)
@@ -130,18 +132,19 @@ class ShuffleRows:
 		return key_list_result
 
 
-	def _write_lines(self, dictionary):
+	def _get_lines(self, dictionary):
 		# TODO write into a output file
+		buffer_output = ''
 		while len(dictionary) > 0:
-			# print key_dict_distracted.pop()
 			line = self._dict_arguments[dictionary.pop()].pop()
-			print line[0], line[3], line[8]
-		print '---------------------------'
+			buffer_output = buffer_output + ','.join(line)
+		return buffer_output
 
 	# It loops reads the arguments from _dict_arguments by means of _key_dict
 	# The read arguments are removed
-	def _write_file_output(self, key_dict):
+	def _get_string2write(self, key_dict):
 
+		string2write = ''
 		key_dict.sort()
 
 		key_list_trial = self._get_key_mixed(
@@ -150,13 +153,10 @@ class ShuffleRows:
 			items2add_num = 1,
 			key2add_name = 'P-distracted'
 			)
-
-		self._write_lines(key_list_trial)
-		print '------ 6:', len(key_list_trial)
+		string2write = string2write + self._get_lines(key_list_trial)
 
 		# I need to distribute randomly 25 items 'T-distractors' inside a list of 36 items 'T-****'
 		# I can divide the 36 items and the 25 items 'T-distractors' into two parts:
-
 		# First part: 21 'T-****' vs 15 'T-distractors' -> 7/5; the probability density will be about 66%
 		key_list_test1 = self._get_key_mixed(
 			key_list = key_dict[4:25], # it gets the first 21 items which name is 'T-****' because the items has been sorted
@@ -164,8 +164,6 @@ class ShuffleRows:
 			items2add_num = 5,
 			key2add_name = 'T-distracted'
 			)
-		print '------ 36:', len(key_list_test1)
-
 		# Second part: 15 'T-****' vs 10 'T-distractors' -> 3/2; the probability density will be about 71%
 		key_list_test2 = self._get_key_mixed(
 			key_list = key_dict[25:], # it gets the last 15 items which name is 'T-****' because the items has been sorted
@@ -173,9 +171,10 @@ class ShuffleRows:
 			items2add_num = 2,
 			key2add_name = 'T-distracted'
 			)
-		print '------- 25:', len(key_list_test2)
 		key_list_test = key_list_test2 + key_list_test1
-		self._write_lines(key_list_test)
+		string2write = string2write  + self._get_lines(key_list_test)
+
+		return string2write
 
 file_input = ['../stimuli/arguments.csv', '../stimuli/distractors.csv']
 file_output = '/tmp/arguments.csv'
