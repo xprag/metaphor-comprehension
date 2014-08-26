@@ -17,7 +17,7 @@ The arguments will be read according the keys inside the list of the second data
 
 """
 
-import codecs, random, re, sys
+import codecs, os, random, re, sys
 
 class ShuffleRows:
 	# there are two main variables:
@@ -51,10 +51,9 @@ class ShuffleRows:
 
 	# It read the line from the input_file and return a list containing these values shuffles except the first-one (header)
 	def _get_rows(self, filenames):
-		# TODO implement pathname manipulations "os.path"
 		rows = []
 		for filename in filenames:
-			with codecs.open(filename, encoding='utf-8') as f:
+			with codecs.open(os.path.realpath(filename), encoding='utf-8') as f:
 				lines = f.readlines()
 				self._arguments_header = lines.pop(0) # the first rows are just the header and it will be removed
 				rows = rows + lines
@@ -133,7 +132,6 @@ class ShuffleRows:
 
 
 	def _get_lines(self, dictionary):
-		# TODO write into a output file
 		buffer_output = ''
 		while len(dictionary) > 0:
 			line = self._dict_arguments[dictionary.pop()].pop()
@@ -176,6 +174,6 @@ class ShuffleRows:
 
 		return string2write
 
-file_input = ['../stimuli/arguments.csv', '../stimuli/distractors.csv']
+file_input = ['./stimuli/arguments.csv', './stimuli/distractors.csv']
 file_output = '/tmp/arguments.csv'
 shuffleRows = ShuffleRows(file_input, file_output)
