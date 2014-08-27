@@ -37,7 +37,7 @@ class ShuffleRows:
 		# It contains the key values of self._dict_arguments with duplicated values for each argument for the right hand
 		_key_dict_right = self._remove_half_values(self._key_dict)
 		# It contains the key values of self._dict_arguments with duplicated values for each argument for the left hand
-		_key_dict_left = [] + _key_dict_right
+		_key_dict_left = _key_dict_right[:]
 		self._string2write = []
 		self._string2write.append(self._arguments_header) # it contains just the header of stimuli files
 		self._string2write.append(self._get_string2write(_key_dict_right))
@@ -118,7 +118,7 @@ class ShuffleRows:
 				key_list_tmp.append(key2add_name)
 				i = i + 1
 			random.shuffle(key_list_tmp)
-			key_list_result = key_list_result + key_list_tmp
+			key_list_result.extend(key_list_tmp)
 			item_start = item_end
 			item_end = item_end + item_step
 		return key_list_result
