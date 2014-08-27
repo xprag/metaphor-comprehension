@@ -19,7 +19,7 @@ import codecs, os, random, re, sys
 
 class ShuffleRows:
 	# there are two main variables:
-	# 1 self._key_dict that define the sequence
+	# 1 self._key_dict that defines the sequence
 	# 2 self._dict_arguments that contains the argument which are shuffled
 
 	def __init__(self, file_input, file_output):
@@ -76,24 +76,18 @@ class ShuffleRows:
 			elif columns[0] == 'P':
 				key = columns[0]
 				self._key_dict.append(key)
-
 			# It fills the dictionary
 			if key in self._dict_arguments:
 				self._dict_arguments[key].append(columns)
 			else:
 				self._dict_arguments[key] = [columns]
 
-    # It removes half parts of duplicated elements from a list
-    # example:
-    # *input* my_array = [‘a’, ‘a’, ‘a’, ‘a’, ‘a’, ‘a’, ‘b’, ‘b’, ‘b’, ‘b’, ‘b’, ‘b’]
-    # *output* my_array = [‘a’, ‘a’, ‘a’, ‘b’, ‘b’, ‘b’]
+    # It removes half parts of duplicated elements from a list:
 	def _remove_half_values(self, list_):
-		unique_values = set(list_)
-		for value in unique_values:
-		    half_count =  list_.count(value) / 2
-		    while half_count > 0:
-		        half_count = half_count - 1
+		for value in set(list_):
+		    for i in range(list_.count(value) / 2):
 		        list_.remove(value)
+
 		return list_
 
 	# This method takes a list "key_list" and then for a specific number of items "items_num" 
@@ -103,32 +97,29 @@ class ShuffleRows:
 	# ex1: ['test', 'a', 'test', 'b', 'c', 'test', 'd', 'e', 'f', 'test',]
 	# ex2: ['a', 'b', 'c', 'test', 'test', 'test', 'test', 'd', 'e', 'f']
 	def _get_key_mixed(self, key_list = ['a', 'b', 'c', 'd', 'e', 'f'], items_num = 3, items2add_num = 2, key2add_name = 'test'):
-		# distractors_num = len(self._dict_arguments[key_src]) / 2
-		# print 'len(key_list): ', len(key_list)
 		item_start = 0
 		item_step = items_num
 		item_end = item_step
-		key_list_length = len(key_list)
 		key_list_result = []
 
-		while item_end < key_list_length + 1:
+		for c in range(len(key_list) / items_num):
 			key_list_tmp = key_list[item_start: item_end]
-			i = 0
-			while i < items2add_num:
+			for i in range(items2add_num):
 				key_list_tmp.append(key2add_name)
-				i = i + 1
 			random.shuffle(key_list_tmp)
 			key_list_result.extend(key_list_tmp)
 			item_start = item_end
 			item_end = item_end + item_step
-		return key_list_result
 
+		return key_list_result
 
 	def _get_lines(self, dictionary):
 		buffer_output = []
+
 		while len(dictionary) > 0:
 			line = self._dict_arguments[dictionary.pop()].pop()
 			buffer_output.append(','.join(line))
+
 		return ''.join(buffer_output)
 
 	# It loops reads the arguments from _dict_arguments by means of _key_dict
