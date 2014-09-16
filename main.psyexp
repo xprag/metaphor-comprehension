@@ -162,7 +162,7 @@
         <Param name="name" val="Introduction" valType="code" updates="None"/>
         <Param name="wrapWidth" val="" valType="code" updates="constant"/>
         <Param name="color" val="white" valType="str" updates="constant"/>
-        <Param name="text" val="Benvenuti!&#10;&#10;State per iniziare un esperimento composto da due parti. &#10;Ogni parte è introdotta dalle istruzioni che vi spiegheranno ciò che dovete fare in seguito.&#10;Alla fine della prima parte, ci sarà una piccola pausa indicata da un messaggio. Grazie per la vostra partecipazione all'esperimento!" valType="str" updates="constant"/>
+        <Param name="text" val="                    Benvenuti!&#10;&#10;State per iniziare un esperimento composto da due parti. &#10;Ogni parte è introdotta dalle istruzioni che vi spiegheranno ciò che dovete fare in seguito.&#10;Alla fine della prima parte, ci sarà una piccola pausa indicata da un messaggio. Grazie per la vostra partecipazione all'esperimento!" valType="str" updates="constant"/>
         <Param name="stopVal" val="" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
         <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
@@ -174,7 +174,7 @@
         <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
         <Param name="startVal" val="0.5" valType="code" updates="None"/>
         <Param name="font" val="Arial" valType="str" updates="constant"/>
-        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
+        <Param name="letterHeight" val="0.09" valType="code" updates="constant"/>
       </TextComponent>
       <KeyboardComponent name="response">
         <Param name="correctAns" val="" valType="str" updates="constant"/>
@@ -199,6 +199,26 @@
         <Param name="End Routine" val="" valType="extendedCode" updates="constant"/>
         <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
       </CodeComponent>
+      <TextComponent name="text_4">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="text_4" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="yellow" valType="str" updates="constant"/>
+        <Param name="text" val="&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;Premere la barra spaziatrice per continuare" valType="str" updates="constant"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.5" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.08" valType="code" updates="constant"/>
+      </TextComponent>
     </Routine>
     <Routine name="arguments">
       <TextComponent name="text">
