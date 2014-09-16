@@ -44,25 +44,15 @@
         <Param name="letterHeight" val="0.5" valType="code" updates="constant"/>
       </TextComponent>
     </Routine>
-    <Routine name="trial">
-      <StaticComponent name="ISI">
-        <Param name="code" val="" valType="code" updates="None"/>
-        <Param name="name" val="ISI" valType="code" updates="None"/>
-        <Param name="stopVal" val="0.5" valType="code" updates="constant"/>
-        <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="startEstim" val="" valType="code" updates="None"/>
-        <Param name="startType" val="time (s)" valType="str" updates="None"/>
-        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
-        <Param name="startVal" val="0.0" valType="code" updates="None"/>
-      </StaticComponent>
-      <TextComponent name="Introduction">
+    <Routine name="Fixation_point_2">
+      <TextComponent name="text_3">
         <Param name="opacity" val="1" valType="code" updates="constant"/>
         <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
-        <Param name="name" val="Introduction" valType="code" updates="None"/>
+        <Param name="name" val="text_3" valType="code" updates="None"/>
         <Param name="wrapWidth" val="" valType="code" updates="constant"/>
-        <Param name="color" val="white" valType="str" updates="constant"/>
-        <Param name="text" val="Benvenuti!&#10;&#10;State per iniziare un esperimento composto da due parti. &#10;Ogni parte è introdotta dalle istruzioni che vi spiegheranno ciò che dovete fare in seguito.&#10;Alla fine della prima parte, ci sarà una piccola pausa indicata da un messaggio. Grazie per la vostra partecipazione all'esperimento!" valType="str" updates="constant"/>
-        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="color" val="red" valType="str" updates="constant"/>
+        <Param name="text" val="+" valType="str" updates="constant"/>
+        <Param name="stopVal" val="0.500" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
         <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
         <Param name="flip" val="" valType="str" updates="constant"/>
@@ -71,33 +61,32 @@
         <Param name="startType" val="time (s)" valType="str" updates="None"/>
         <Param name="ori" val="0" valType="code" updates="constant"/>
         <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
-        <Param name="startVal" val="0.5" valType="code" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
         <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.5" valType="code" updates="constant"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="feedback">
+      <TextComponent name="text_2">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="text_2" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="'P1: ' + $premise1.replace('...', $TW) +&#10;'\n\n' +&#10;'P2: ' + $premise2.replace('...', $TW) +&#10;'\n_______________________________\n\n' +&#10;'C: ' + $conclusion" valType="str" updates="set every repeat"/>
+        <Param name="stopVal" val="0.5" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial Narrow" valType="str" updates="constant"/>
         <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
       </TextComponent>
-      <KeyboardComponent name="response">
-        <Param name="correctAns" val="" valType="str" updates="constant"/>
-        <Param name="storeCorrect" val="False" valType="bool" updates="constant"/>
-        <Param name="name" val="response" valType="code" updates="None"/>
-        <Param name="stopVal" val="" valType="code" updates="constant"/>
-        <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
-        <Param name="startEstim" val="" valType="code" updates="None"/>
-        <Param name="discard previous" val="True" valType="bool" updates="constant"/>
-        <Param name="startType" val="time (s)" valType="str" updates="None"/>
-        <Param name="allowedKeys" val="'y','n','left','right','space'" valType="code" updates="constant"/>
-        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
-        <Param name="startVal" val="0.5" valType="code" updates="None"/>
-        <Param name="store" val="last key" valType="str" updates="constant"/>
-      </KeyboardComponent>
-      <CodeComponent name="code">
-        <Param name="Begin Experiment" val="import utils.shuffleRows as shuffleRows&#10;file_input = ['./stimuli/arguments.csv', './stimuli/distractors.csv']&#10;file_output = '/tmp/arguments.csv'&#10;shuffleRows.ShuffleRows(file_input, file_output)" valType="extendedCode" updates="constant"/>
-        <Param name="name" val="code" valType="code" updates="None"/>
-        <Param name="Each Frame" val="" valType="extendedCode" updates="constant"/>
-        <Param name="Begin Routine" val="" valType="extendedCode" updates="constant"/>
-        <Param name="End Routine" val="" valType="extendedCode" updates="constant"/>
-        <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
-      </CodeComponent>
     </Routine>
     <Routine name="question">
       <TextComponent name="question_text">
@@ -156,6 +145,61 @@
         <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
       </TextComponent>
     </Routine>
+    <Routine name="trial">
+      <StaticComponent name="ISI">
+        <Param name="code" val="" valType="code" updates="None"/>
+        <Param name="name" val="ISI" valType="code" updates="None"/>
+        <Param name="stopVal" val="0.5" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+      </StaticComponent>
+      <TextComponent name="Introduction">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="Introduction" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="Benvenuti!&#10;&#10;State per iniziare un esperimento composto da due parti. &#10;Ogni parte è introdotta dalle istruzioni che vi spiegheranno ciò che dovete fare in seguito.&#10;Alla fine della prima parte, ci sarà una piccola pausa indicata da un messaggio. Grazie per la vostra partecipazione all'esperimento!" valType="str" updates="constant"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.5" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
+      </TextComponent>
+      <KeyboardComponent name="response">
+        <Param name="correctAns" val="" valType="str" updates="constant"/>
+        <Param name="storeCorrect" val="False" valType="bool" updates="constant"/>
+        <Param name="name" val="response" valType="code" updates="None"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="discard previous" val="True" valType="bool" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="allowedKeys" val="'y','n','left','right','space'" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.5" valType="code" updates="None"/>
+        <Param name="store" val="last key" valType="str" updates="constant"/>
+      </KeyboardComponent>
+      <CodeComponent name="code">
+        <Param name="Begin Experiment" val="import utils.shuffleRows as shuffleRows&#10;file_input = ['./stimuli/arguments.csv', './stimuli/distractors.csv']&#10;file_output = '/tmp/arguments.csv'&#10;shuffleRows.ShuffleRows(file_input, file_output)" valType="extendedCode" updates="constant"/>
+        <Param name="name" val="code" valType="code" updates="None"/>
+        <Param name="Each Frame" val="" valType="extendedCode" updates="constant"/>
+        <Param name="Begin Routine" val="" valType="extendedCode" updates="constant"/>
+        <Param name="End Routine" val="" valType="extendedCode" updates="constant"/>
+        <Param name="End Experiment" val="" valType="extendedCode" updates="constant"/>
+      </CodeComponent>
+    </Routine>
     <Routine name="arguments">
       <TextComponent name="text">
         <Param name="opacity" val="1" valType="code" updates="constant"/>
@@ -193,28 +237,6 @@
         <Param name="store" val="last key" valType="str" updates="constant"/>
       </KeyboardComponent>
     </Routine>
-    <Routine name="feedback">
-      <TextComponent name="text_2">
-        <Param name="opacity" val="1" valType="code" updates="constant"/>
-        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
-        <Param name="name" val="text_2" valType="code" updates="None"/>
-        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
-        <Param name="color" val="white" valType="str" updates="constant"/>
-        <Param name="text" val="'P1: ' + $premise1.replace('...', $TW) +&#10;'\n\n' +&#10;'P2: ' + $premise2.replace('...', $TW) +&#10;'\n_______________________________\n\n' +&#10;'C: ' + $conclusion" valType="str" updates="set every repeat"/>
-        <Param name="stopVal" val="0.5" valType="code" updates="constant"/>
-        <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
-        <Param name="flip" val="" valType="str" updates="constant"/>
-        <Param name="startEstim" val="" valType="code" updates="None"/>
-        <Param name="units" val="from exp settings" valType="str" updates="None"/>
-        <Param name="startType" val="time (s)" valType="str" updates="None"/>
-        <Param name="ori" val="0" valType="code" updates="constant"/>
-        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
-        <Param name="startVal" val="0.0" valType="code" updates="None"/>
-        <Param name="font" val="Arial Narrow" valType="str" updates="constant"/>
-        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
-      </TextComponent>
-    </Routine>
   </Routines>
   <Flow>
     <Routine name="trial"/>
@@ -230,6 +252,7 @@
     <Routine name="arguments"/>
     <Routine name="feedback"/>
     <Routine name="question"/>
+    <Routine name="Fixation_point_2"/>
     <LoopTerminator name="trials"/>
   </Flow>
 </PsychoPy2experiment>
