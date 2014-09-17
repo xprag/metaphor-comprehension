@@ -8,12 +8,12 @@
     <Param name="Window size (pixels)" val="[1280, 800]" valType="code" updates="None"/>
     <Param name="Full-screen window" val="True" valType="bool" updates="None"/>
     <Param name="colorSpace" val="rgb" valType="str" updates="None"/>
-    <Param name="Experiment info" val="{u'participant': u'1', u'Name': u'Leo'}" valType="code" updates="None"/>
+    <Param name="Experiment info" val="{u'Et\xe0': u'1', u'Nome': u'Leo', u'participant': u'1', u'Mano (D/S)': u'D', u'Genere (M/F)': u'M'}" valType="code" updates="None"/>
     <Param name="Save csv file" val="False" valType="bool" updates="None"/>
     <Param name="Show info dlg" val="True" valType="bool" updates="None"/>
     <Param name="Save wide csv file" val="True" valType="bool" updates="None"/>
     <Param name="Save psydat file" val="True" valType="bool" updates="None"/>
-    <Param name="expName" val="main" valType="str" updates="None"/>
+    <Param name="expName" val="Metafora e Argomentazione" valType="str" updates="None"/>
     <Param name="logging level" val="exp" valType="code" updates="None"/>
     <Param name="blendMode" val="avg" valType="str" updates="None"/>
     <Param name="Save excel file" val="False" valType="bool" updates="None"/>
