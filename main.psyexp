@@ -278,10 +278,10 @@
       </TextComponent>
     </Routine>
     <Routine name="arguments">
-      <TextComponent name="text">
+      <TextComponent name="arguments_text">
         <Param name="opacity" val="1" valType="code" updates="constant"/>
         <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
-        <Param name="name" val="text" valType="code" updates="None"/>
+        <Param name="name" val="arguments_text" valType="code" updates="None"/>
         <Param name="wrapWidth" val="" valType="code" updates="constant"/>
         <Param name="color" val="white" valType="str" updates="constant"/>
         <Param name="text" val="'P1: ' + $premise1 + &#10;'\n\n' + &#10;'P2: ' + $premise2 +&#10;'\n_______________________________\n\n' +&#10;'C: ' + $conclusion" valType="str" updates="set every repeat"/>
@@ -348,9 +348,9 @@
     <Routine name="welcome_message"/>
     <Routine name="instructions_message"/>
     <LoopTerminator name="instructions_loop"/>
-    <LoopInitiator loopType="TrialHandler" name="trials">
+    <LoopInitiator loopType="TrialHandler" name="arguments_loop">
       <Param name="conditionsFile" val="../../../../../private/tmp/arguments.csv" valType="str" updates="None"/>
-      <Param name="name" val="trials" valType="code" updates="None"/>
+      <Param name="name" val="arguments_loop" valType="code" updates="None"/>
       <Param name="random seed" val="" valType="code" updates="None"/>
       <Param name="loopType" val="sequential" valType="str" updates="None"/>
       <Param name="nReps" val="1" valType="code" updates="None"/>
@@ -361,6 +361,6 @@
     <Routine name="missing_word"/>
     <Routine name="question"/>
     <Routine name="fixation_point"/>
-    <LoopTerminator name="trials"/>
+    <LoopTerminator name="arguments_loop"/>
   </Flow>
 </PsychoPy2experiment>
