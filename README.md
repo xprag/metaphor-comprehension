@@ -14,4 +14,16 @@ For example by using the python console you should type the following command:
 >>> u'è'
 u'\xe8'
 ```
+
+3. ##### The missing word
+How should I display the missing word:
+- 
+```
+'P1: ' + $premise1.replace('...', $TW) +
+'\n\n' +
+'P2: ' + $premise2.replace('...', $TW) +
+'\n_______________________________\n\n' +
+'C: ' + $conclusion
+```
+
 Reference: [Unicode HOWTO](https://docs.python.org/2/howto/unicode.html)
