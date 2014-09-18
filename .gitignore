@@ -2,3 +2,5 @@ data
 main_lastrun.py
 .DS_Store
 *.pyc
+test.py
+main.py
