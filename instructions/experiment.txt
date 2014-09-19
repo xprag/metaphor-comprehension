@@ -1,0 +1,15 @@
+                                            ISTRUZIONI
+
+Leggerete degli argomenti composti da due premesse (P1 e P2) e una conclusione (C). Alle premesse manca un termine. Giudicate poi se la conclusione segue dalle premesse, rispondendo:
+
+                     SI (La conclusione segue dalle premesse) 
+                                                 ↓
+                                   premete sul tasto [q] 
+
+                                             oppure:
+
+                NO (La conclusione NON segue dalle premesse) 
+                                                 ↓
+                                   premete sul tasto [+] 
+
+Dovrete rispondere il più precisamente e il più velocemente possibile.
