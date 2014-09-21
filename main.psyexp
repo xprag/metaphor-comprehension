@@ -46,7 +46,7 @@
     </Routine>
     <Routine name="welcome_message">
       <CodeComponent name="code">
-        <Param name="Begin Experiment" val="import utils.shuffleRows as shuffleRows&#10;file_input = ['./stimuli/arguments.csv', './stimuli/distractors.csv']&#10;file_output = '/tmp/arguments.csv'&#10;#shuffleRows.ShuffleRows(file_input, file_output)&#10;&#10;import codecs, os&#10;def open_codecs(filename):&#10;    return codecs.open(os.path.realpath(filename), encoding='utf-8')&#10;" valType="extendedCode" updates="constant"/>
+        <Param name="Begin Experiment" val="import utils.shuffleRows as shuffleRows&#10;file_input = ['./stimuli/arguments.csv', './stimuli/distractors.csv']&#10;file_output = '/tmp/arguments.csv'&#10;# TODO to uncocoment&#10;#shuffleRows.ShuffleRows(file_input, file_output)&#10;&#10;import codecs, os&#10;def open_codecs(filename):&#10;    return codecs.open(os.path.realpath(filename), encoding='utf-8')" valType="extendedCode" updates="constant"/>
         <Param name="name" val="code" valType="code" updates="None"/>
         <Param name="Each Frame" val="" valType="extendedCode" updates="constant"/>
         <Param name="Begin Routine" val="" valType="extendedCode" updates="constant"/>
@@ -92,7 +92,7 @@
         <Param name="text" val="$open_codecs('instructions/space_bar.txt').read()" valType="str" updates="constant"/>
         <Param name="stopVal" val="" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="pos" val="[0, -0.8]" valType="code" updates="constant"/>
         <Param name="flip" val="" valType="str" updates="constant"/>
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="units" val="from exp settings" valType="str" updates="None"/>
@@ -113,7 +113,7 @@
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="discard previous" val="True" valType="bool" updates="constant"/>
         <Param name="startType" val="time (s)" valType="str" updates="None"/>
-        <Param name="allowedKeys" val="'y','n','left','right','space'" valType="code" updates="constant"/>
+        <Param name="allowedKeys" val="'space'" valType="code" updates="constant"/>
         <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
         <Param name="startVal" val="0.5" valType="code" updates="None"/>
         <Param name="store" val="nothing" valType="str" updates="constant"/>
@@ -149,7 +149,7 @@
         <Param name="text" val="$open_codecs('instructions/show_arguments.txt').read()&#10;" valType="str" updates="constant"/>
         <Param name="stopVal" val="" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="pos" val="[0, -0.8]" valType="code" updates="constant"/>
         <Param name="flip" val="" valType="str" updates="constant"/>
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="units" val="from exp settings" valType="str" updates="None"/>
@@ -243,7 +243,7 @@
         <Param name="text" val="$open_codecs('instructions/answer_to_question.txt').read()" valType="str" updates="constant"/>
         <Param name="stopVal" val="" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="pos" val="[0, -0.55]" valType="code" updates="constant"/>
         <Param name="flip" val="" valType="str" updates="constant"/>
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="units" val="from exp settings" valType="str" updates="None"/>
@@ -308,7 +308,7 @@
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="discard previous" val="True" valType="bool" updates="constant"/>
         <Param name="startType" val="time (s)" valType="str" updates="None"/>
-        <Param name="allowedKeys" val="'y','n','left','right','space'" valType="code" updates="constant"/>
+        <Param name="allowedKeys" val="'space'" valType="code" updates="constant"/>
         <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
         <Param name="startVal" val="0.0" valType="code" updates="None"/>
         <Param name="store" val="last key" valType="str" updates="constant"/>
@@ -322,7 +322,7 @@
         <Param name="text" val="$open_codecs('instructions/show_missing_word.txt').read()" valType="str" updates="constant"/>
         <Param name="stopVal" val="" valType="code" updates="constant"/>
         <Param name="durationEstim" val="" valType="code" updates="None"/>
-        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="pos" val="[0, -0.7]" valType="code" updates="constant"/>
         <Param name="flip" val="" valType="str" updates="constant"/>
         <Param name="startEstim" val="" valType="code" updates="None"/>
         <Param name="units" val="from exp settings" valType="str" updates="None"/>
