@@ -20,7 +20,7 @@ T,O,18,TPPC,N,Talete è un ... ,Un ... è una lettura piacevole ,Talete è una l
 T,P,1,TPFC,N,Un lingotto è una ... ,Una ... è una lineetta ,Un lingotto è una lineetta,BARRA
 T,P,2,TPFC,N,La luna forma uno ... ,Uno ... è una parte del frutto ,La luna forma una parte del frutto,SPICCHIO
 T,P,3,TPFC,N,Il nuotatore percorre una ... ,Una ... è una sezione stradale ,Il nuotatore percorre una sezione stradale,CORSIA
-T,P,4,TPFC,N,Una piantina è una ... ,Una ... avvolge una sigaretta ,Una piantina avvolge una sigarettA,CARTINA
+T,P,4,TPFC,N,Una piantina è una ... ,Una ... avvolge una sigaretta ,Una piantina avvolge una sigaretta,CARTINA
 T,P,5,TPFC,N,Una coperta imbottita è un ... ,Un ... è un giubbotto ,Una coperta imbottita è un giubbotto,PIUMINO
 T,P,6,TPFC,N,Gli ecologisti lanciano un ... ,Un ... è una data d'esame ,Gli ecologisti lanciano una data d'esame,APPELLO
 T,P,7,TPTC,Y,Arisa incide un ... ,Un ... è una raccolta di brani ,Arisa incide una raccolta di brani,ALBUM
@@ -58,7 +58,7 @@ T,V,2,TPFC,N,Un'esperienza è un ... ,Un ... ha quattro ruote ,Un'esperienza ha 
 T,V,3,TPFC,N,Una cozza è un ... ,Un ... contiene penne ,Una cozza contiene penne,ASTUCCIO
 T,V,4,TPFC,N,Il movimento è una ... ,Una ... ha una pagaia ,Il movimento ha una pagaia,CANOA
 T,V,5,TPFC,N,Il vento è un ... ,Un ... è un uomo ,Il vento è un uomo,BIDELLO
-T,V,6,TPFC,N,LAfrica è un ... ,Un ... decora le pareti ,LAfrica decora le pareti,ARAZZO
+T,V,6,TPFC,N,L'Africa è un ... ,Un ... decora le pareti ,L'Africa decora le pareti,ARAZZO
 T,V,7,TPTC,Y,Il migliore amico è un ... ,Un ... è una persona somigliante ,Il migliore amico è una persona somigliante,SOSIA
 T,V,8,TPTC,Y,L'altruismo è una ... ,Una ... è uno slancio ,L'altruismo è uno slancio,RINCORSA
 T,V,9,TPTC,Y,La mafia è un ... ,Un ... ha tentacoli ,La mafia ha tentacoli,POLPO
@@ -71,11 +71,11 @@ T,V,15,TPPC,N,Un grido è un ... ,Un ... emette suoni ,Un grido emette suoni,MEG
 T,V,16,TPPC,N,Uno spirito è uno ... ,Uno ... è un personaggio di fantasia ,Uno spirito è un personaggio di fantasia,GNOMO
 T,V,17,TPPC,N,Il cuore è un'... ,Un'... trasporta liquidi ,Il cuore trasporta liquidi,ANFORA
 T,V,18,TPPC,N,Il lavoro è un ... ,Un ... serve nei campi ,Il lavoro serve nei campi,BADILE
-P,O,1,TPFC,N,La felpa ha il ... ,il ... è una bevanda ,La felpa ha una bevanda,CAPPUCCIO
+P,O,1,TPFC,N,La felpa ha il ... ,Il ... è una bevanda ,La felpa ha una bevanda,CAPPUCCIO
 P,O,2,TPTC,Y,Il Ticino è un ... ,Un ... è un fiume ,Il Ticino è un fiume,EMISSARIO
 P,P,1,TPFC,N,La lavatrice ha un ... ,Un ... contiene bottiglie ,La lavatrice contiene bottiglie,CESTELLO
 P,P,2,TPTC,Y,Sara gestisce una ... ,Una ... è un locale ,Sara gestisce un locale,DISCOTECA
 P,L,1,TPFC,N,Un punto fermo è un ... ,Un ... è un piccolo palo ,Un punto fermo è un piccolo palo,PALETTO
 P,L,2,TPPC,N,La laurea è un ... ,Un ... consente il riposo ,La laurea consente il riposo,APPRODO
 P,V,1,TPTC,Y,La gioia è una ... ,Una ... è vivace ,La gioia è vivace,SAMBA
-P,V,2,TPFC,N,Il conforto è una ... ,Una ... Scende dalla nave ,Il conforto scende dalla nave,SCIALUPPA
+P,V,2,TPFC,N,Il conforto è una ... ,Una ... scende dalla nave ,Il conforto scende dalla nave,SCIALUPPA
