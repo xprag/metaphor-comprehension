@@ -1,7 +1,5 @@
-                      BENVENTUTI!
+                    BENVENTUTI!
 
-State per iniziare un esperimento composto da due parti.
-Ogni parte è introdotta dalle istruzioni che vi spiegheranno ciò che dovete fare in seguito.
-Alla fine della prima parte, ci sarà una piccola pausa indicata da un messaggio.
+State per iniziare un esperimento composto da due parti. Ogni parte è introdotta dalle istruzioni che vi spiegheranno ciò che dovete fare in seguito. Alla fine della prima parte, ci sarà una piccola pausa indicata da un messaggio. 
+
 Grazie per la vostra partecipazione all'esperimento!
-
