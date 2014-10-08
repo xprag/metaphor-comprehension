@@ -255,7 +255,7 @@
         <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
       </TextComponent>
       <CodeComponent name="arg_loop_pp">
-        <Param name="Begin Experiment" val="# Pause during the experiment&#10;argument_loop_cout = 0&#10;def show_pause_msg(message):&#10;    msg = visual.TextStim(win, text = message)&#10;    while True:&#10;        msg.draw()&#10;        win.flip()&#10;        if len(event.getKeys(keyList=['p']))&gt;0: &#10;            break&#10;        event.clearEvents()&#10;&#10;def get_correct_response(correct_answer):&#10;    return 1 if correct_answer == 'Y' else 0" valType="extendedCode" updates="constant"/>
+        <Param name="Begin Experiment" val="# Pause during the experiment&#10;argument_loop_cout = 0&#10;def show_pause_msg(message):&#10;    msg = visual.TextStim(win, text = message)&#10;    while True:&#10;        msg.draw()&#10;        win.flip()&#10;        if len(event.getKeys(keyList=['p']))&gt;0: &#10;            break&#10;        event.clearEvents()&#10;&#10;def get_correct_response(correct_answer):&#10;&quot;&quot;&quot;&#10;Function:  get_correct_response&#10;---&#10;computes:&#10;Method to map user's keyboard entries with correct_answer &#10;stored into 'stimuli' file&#10;&#10;returns:&#10;1 or 0 depending on user's keyboard entries&#10;&quot;&quot;&quot;&#10;    return 1 if correct_answer == 'Y' else 0" valType="extendedCode" updates="constant"/>
         <Param name="name" val="arg_loop_pp" valType="code" updates="None"/>
         <Param name="Each Frame" val="" valType="extendedCode" updates="constant"/>
         <Param name="Begin Routine" val="" valType="extendedCode" updates="constant"/>
