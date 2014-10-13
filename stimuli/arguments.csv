@@ -1,0 +1,81 @@
+ArgumentBlock,TWType,ArgumentNumber,ArgumentType,CorrectAnswer,premise1,premise2,conclusion,TW
+T,O,1,TPFC,N,La prugna contiene il ... ,Il ... è un albero ,La prugna contiene un albero,NOCCIOLO
+T,O,2,TPFC,N,Una certa quantità è un ... ,Un ... scava buche ,Una certa quantità scava buche,TASSO
+T,O,3,TPFC,N,Fabrizio Corona è un ... ,Un ... è un fiore ,Fabrizio Corona è un fiore, NARCISO
+T,O,4,TPFC,N,I capelli hanno un ... ,Un ... è un porcospino ,I capelli hanno un porcospino,RICCIO
+T,O,5,TPFC,N,Un capitombolo è un ... ,Un ... è un nastro arrotolato ,Un capitombolo è un nastro arrotolato, ROTOLONE
+T,O,6,TPFC,N,La buccia è uno ... ,Uno ... è una grossa differenza ,La buccia è una grossa differenza, SCARTO
+T,O,7,TPTC,Y,Il caseificio produce ... ,... è formaggio ,Il caseificio produce formaggio, GRANA 
+T,O,8,TPTC,Y,La televisione è un ... ,Un ... è molto diffuso ,La televisione è molto diffusa, MEDIA
+T,O,9,TPTC,Y,La zia coltiva il ... ,Il ... è una pianta ,La zia coltiva una pianta,MIGLIO
+T,O,10,TPTC,Y,Al bivio c'è un ... ,Un ... è un'interruzione ,Al bivio c'è un'interruzione, BLOCCO
+T,O,11,TPTC,Y,Belen è una ... ,Una ... è una showgirl ,Belen è una showgirl,VALLETTA
+T,O,12,TPTC,Y,In montagna c'è una ... ,Una ... è un piano inclinato ,In montagna c'è un piano inclinato,SCARPATA
+T,O,13,TPPC,N,Una scommessa è una ... ,Una ... è trasmessa in TV ,Una scommessa è trasmessa in TV,PUNTATA
+T,O,14,TPPC,N,Un assortimento è una ... ,Una ... è greca ,Un assortimento è greco,GAMMA
+T,O,15,TPPC,N,Un portiere ha fatto una ... ,Una ... è una sfilata militare ,Un portiere ha fatto una sfilata militare,PARATA
+T,O,16,TPPC,N,La guardia forestale ha una ... ,Una ... è una somma illegale ,La guardia forestale ha una somma illegale,MAZZETTA
+T,O,17,TPPC,N,A Verona c'è l'... ,L'... è sabbia ,A Verona c'è sabbia,ARENA
+T,O,18,TPPC,N,Talete è un ... ,Un ... è una lettura piacevole ,Talete è una lettura piacevole,SAGGIO
+T,P,1,TPFC,N,Un lingotto è una ... ,Una ... è una lineetta ,Un lingotto è una lineetta,BARRA
+T,P,2,TPFC,N,La luna forma uno ... ,Uno ... è una parte del frutto ,La luna forma una parte del frutto,SPICCHIO
+T,P,3,TPFC,N,Il nuotatore percorre una ... ,Una ... è una sezione stradale ,Il nuotatore percorre una sezione stradale,CORSIA
+T,P,4,TPFC,N,Una piantina è una ... ,Una ... avvolge una sigaretta ,Una piantina avvolge una sigaretta,CARTINA
+T,P,5,TPFC,N,Una coperta imbottita è un ... ,Un ... è un giubbotto ,Una coperta imbottita è un giubbotto,PIUMINO
+T,P,6,TPFC,N,Gli ecologisti lanciano un ... ,Un ... è una data d'esame ,Gli ecologisti lanciano una data d'esame,APPELLO
+T,P,7,TPTC,Y,Arisa incide un ... ,Un ... è una raccolta di brani ,Arisa incide una raccolta di brani,ALBUM
+T,P,8,TPTC,Y,Anna Frank ha scritto un ... ,Un ... contiene pensieri ,Anna Frank ha scritto pensieri,DIARIO
+T,P,9,TPTC,Y,Una nave utilizza una ... ,Una ... è un molo del porto ,Una nave utilizza un molo del porto,BANCHINA
+T,P,10,TPTC,Y,Un viaggiatore ha una ... ,Una ... è una carta geografica ,Un viaggiatore ha una carta geografica,MAPPA
+T,P,11,TPTC,Y,Il giudice decreta il ... ,Il ... è una proroga ,Il giudice decreta una proroga,RINVIO
+T,P,12,TPTC,Y,Il compositore scrive una ... ,Una ... è una composizione musicale ,Il compositore scrive una composizione musicale,MELODIA
+T,P,13,TPPC,N,Quella trasmissione è una ... ,Una ... contrasta il suo libro ,Quella trasmissione contrasta il suo libro,REPLICA
+T,P,14,TPPC,N,Mario incide una ... ,Una ... è un contenitore ,Mario incide un contenitore,CASSETTA
+T,P,15,TPPC,N,L'occhio ha l'... ,L'... è un insieme di colori ,L'occhio ha un insieme di colori,IRIDE
+T,P,16,TPPC,N,La benzina ha avuto un ... ,Un ... è un rilievo ,La benzina ha avuto un rilievo,RIALZO
+T,P,17,TPPC,N,Carla aggiunge una ... ,Una ... è un piccolo involucro ,Carla aggiunge un piccolo involucro,BUSTINA
+T,P,18,TPPC,N,Il papa ha un ... ,Un ... ha un elettorato ,Il papa ha un elettorato,SEGGIO
+T,L,1,TPFC,N,Studiare è una ... ,Una ... è una corsa podistica ,Studiare è una corsa podistica,MARATONA
+T,L,2,TPFC,N,La mamma è una ... ,La ... cova le uova ,La mamma cova le uova,CHIOCCIA
+T,L,3,TPFC,N,I soci fondatori sono il ... ,Il ... è all'interno dell'atomo ,I soci fondatori sono all'interno dell'atomo,NUCLEO
+T,L,4,TPFC,N,L'amicizia è un ... ,Un ... è una preparazione emolliente ,L'amicizia è una preparazione emolliente,BALSAMO
+T,L,5,TPFC,N,L'attività ha visto un ... ,Un ... è una manovra dell'aereo ,L'attività ha visto una manovra dell'aereo,DECOLLO
+T,L,6,TPFC,N,Il comico è una ... ,Una ... è una linea di contorno ,Il comico è una linea di contorno,SAGOMA
+T,L,7,TPTC,Y,Mario segue il ... ,Il ... è un gruppo conformista ,Mario segue un gruppo conformista,GREGGE
+T,L,8,TPTC,Y,L'aggressività è un'... ,Un'... è una difesa ,L'aggressività è una difesa,ARMATURA
+T,L,9,TPTC,Y,Gigi guadagna la ... ,La ... è il sostentamento quotidiano ,Gigi guadagna il sostentamento quotidiano,PAGNOTTA
+T,L,10,TPTC,Y,La vita è un ... ,Un ... è complesso ,La vita è complessa,REBUS
+T,L,11,TPTC,Y,I valori costituiscono uno ... ,Uno ... è un sistema di riferimento ,I valori costituiscono un sistema di riferimento,SFONDO
+T,L,12,TPTC,Y,L'amicizia è un ... ,Un ... è un aiuto ,L'amicizia è un aiuto,SUPPORTO
+T,L,13,TPPC,N,Franco ha chiuso un ... ,Un ... è una parte del libro ,Franco ha chiuso una parte del libro,CAPITOLO
+T,L,14,TPPC,N,Quella ragazza è una ... ,Una ... è una pietra preziosa ,Quella ragazza è una pietra preziosa,GEMMA
+T,L,15,TPPC,N,Uno tzunami è un'... ,Un'... è una serie di eventi ,Uno tzunami è una serie di eventi,ONDATA
+T,L,16,TPPC,N,La presidenza è l... ,L... è la parte più alta ,La presidenza è la parte più alta,APICE
+T,L,17,TPPC,N,Una risata è un ... ,Un ... serve alla salute ,Una risata serve alla salute,FARMACO
+T,L,18,TPPC,N,Il corpo è un ... ,Il ... è sacro ,Il corpo è sacro,TEMPIO
+T,V,1,TPFC,N,Un vortice è un ... ,Un ... è siciliano ,Un vortice è siciliano,CANNOLO
+T,V,2,TPFC,N,Un'esperienza è un ... ,Un ... ha quattro ruote ,Un'esperienza ha quattro ruote,CAMPER
+T,V,3,TPFC,N,Una cozza è un ... ,Un ... contiene penne ,Una cozza contiene penne,ASTUCCIO
+T,V,4,TPFC,N,Il movimento è una ... ,Una ... ha una pagaia ,Il movimento ha una pagaia,CANOA
+T,V,5,TPFC,N,Il vento è un ... ,Un ... è un uomo ,Il vento è un uomo,BIDELLO
+T,V,6,TPFC,N,L'Africa è un ... ,Un ... decora le pareti ,L'Africa decora le pareti,ARAZZO
+T,V,7,TPTC,Y,Il migliore amico è un ... ,Un ... è una persona somigliante ,Il migliore amico è una persona somigliante,SOSIA
+T,V,8,TPTC,Y,L'altruismo è una ... ,Una ... è uno slancio ,L'altruismo è uno slancio,RINCORSA
+T,V,9,TPTC,Y,La mafia è un ... ,Un ... ha tentacoli ,La mafia ha tentacoli,POLPO
+T,V,10,TPTC,Y,Un fan è uno ... ,Uno ... favorisce l'organizzazione ,Un fan favorisce l'organizzazione,SPONSOR
+T,V,11,TPTC,Y,L'odio è una ... ,Una ... è arida ,L'odio è arido,STEPPA
+T,V,12,TPTC,Y,L'onore è una ... ,Una ... è la difesa dell'identità ,L'onore è la difesa dell'identità,CASATA
+T,V,13,TPPC,N,Il gallo è un ... ,Un ... è un capo ,Il gallo è un capo,FARAONE
+T,V,14,TPPC,N,Quel bimbo è un ... ,Il ... è dolce ,Quel bimbo è dolce,PANDORO
+T,V,15,TPPC,N,Un grido è un ... ,Un ... emette suoni ,Un grido emette suoni,MEGAFONO
+T,V,16,TPPC,N,Uno spirito è uno ... ,Uno ... è un personaggio di fantasia ,Uno spirito è un personaggio di fantasia,GNOMO
+T,V,17,TPPC,N,Il cuore è un'... ,Un'... trasporta liquidi ,Il cuore trasporta liquidi,ANFORA
+T,V,18,TPPC,N,Il lavoro è un ... ,Un ... serve nei campi ,Il lavoro serve nei campi,BADILE
+P,O,1,TPFC,N,La felpa ha il ... ,Il ... è una bevanda ,La felpa ha una bevanda,CAPPUCCIO
+P,O,2,TPTC,Y,Il Ticino è un ... ,Un ... è un fiume ,Il Ticino è un fiume,EMISSARIO
+P,P,1,TPFC,N,La lavatrice ha un ... ,Un ... contiene bottiglie ,La lavatrice contiene bottiglie,CESTELLO
+P,P,2,TPTC,Y,Sara gestisce una ... ,Una ... è un locale ,Sara gestisce un locale,DISCOTECA
+P,L,1,TPFC,N,Un punto fermo è un ... ,Un ... è un piccolo palo ,Un punto fermo è un piccolo palo,PALETTO
+P,L,2,TPPC,N,La laurea è un ... ,Un ... consente il riposo ,La laurea consente il riposo,APPRODO
+P,V,1,TPTC,Y,La gioia è una ... ,Una ... è vivace ,La gioia è vivace,SAMBA
+P,V,2,TPFC,N,Il conforto è una ... ,Una ... scende dalla nave ,Il conforto scende dalla nave,SCIALUPPA
