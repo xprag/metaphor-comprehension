@@ -1,29 +1,31 @@
-### TODO List
-1. Update the experiment setting adding the following fields: Sex, Age, ...
-2. Change the colour of solution into feedback routine (maybe it should be possible to do it into python code).
+Metaphor comprehension
+=======================
 
-### Issues fixed
-1. ####conditionsFile
-To generate a proper "condition file" you need to use excel and save the file in the following formats "xslx" or "cvs".
-If you use another text editor it will not work.
+Prerequisites:
+------------
 
-2. ####Unicode HOWTO
-If you need to set an accented character you should generate the unicode string of length 1 that contains the corresponding code point.
-For example by using the python console you should type the following command:
-```
->>> u'è'
-u'\xe8'
-```
+- PsychoPy2 v1.81.00 or newer. PsychoPy can be installed as an application. The "Stand Alone" versions include everything you need to create and run the “metaphor comprehension” experiment. 
+[PsychoPy2 download link](http://sourceforge.net/projects/psychpy/files/).
 
-3. ##### The missing word
-How should I display the missing word:
-- 
-```
-'P1: ' + $premise1.replace('...', $TW) +
-'\n\n' +
-'P2: ' + $premise2.replace('...', $TW) +
-'\n_______________________________\n\n' +
-'C: ' + $conclusion
-```
+Installation
+------------
 
-Reference: [Unicode HOWTO](https://docs.python.org/2/howto/unicode.html)
+Get the source code:
+
+    git clone git@github.com:languageguide/metaphor-comprehension.git
+
+Get the stimuli zip file named “stimuli.zip”. In order to get the stimuli file, you can send an email to antonio.pierro@gmail.com or francesca.ervas@gmail.com.
+
+    cd metaphor-comprehension
+    unzip stimuli.zip
+
+Run
+---
+
+From the PsychoPy2 program open the file “main.psyexp” located into metaphor-comprehension directory.
+
+Experiment Analysis
+-------------------
+
+The experimental results will be stored inside the "metaphor-comprehension/data/" directory.
+
