@@ -12,24 +12,24 @@ session = DBSession()
 conn = engine.connect()
 
 s = text("""
-SELECT tw_type, response_to_question, COUNT(*)
+SELECT tw_type, argument_type, response_to_question, COUNT(*)
 FROM argument, person
 where person.id = argument.person_id
-group by tw_type, response_to_question
+group by tw_type, argument_type, response_to_question
 """)
 json_data = {}
 for r in conn.execute(s).fetchall():
-	tw_type = str(r[0])
-	if r[1] == 0:
+	tw_type = str(r[0] + '_' + r[1])
+	if r[2] == 0:
 		label = "Wrong"
 	else:
 		label = "Correct"
 	try:
 		json_data[tw_type]["title"] = tw_type
-		json_data[tw_type]["data"] += [[label, r[2]]]
+		json_data[tw_type]["data"] += [[label, r[3]]]
 	except:
 		json_data[tw_type] = {}
-		json_data[tw_type]["data"] = [[label, r[2]]]
+		json_data[tw_type]["data"] = [[label, r[3]]]
 
 f = open('arguments.json', 'w')
 f.write(json.dumps(json_data))
