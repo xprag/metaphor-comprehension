@@ -6,19 +6,21 @@ $(function () {
 
     $.getJSON('./arguments.json', function (json) {
 
-        $.each(json, function(index, json) {
+        tw_types = ['distrattore', 'O', 'P', 'L', 'V'];
 
-            $('#container').append($('<span>').attr('id', json['title']));
+        $.each(tw_types, function(index, tw_type) {
 
-            $('#' + json['title']).highcharts({
+            $('#container').append($('<span>').attr('id', tw_type));
+
+            $('#' + tw_type).highcharts({
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: 1,//null,
                     plotShadow: false,
-                    width: 400
+                    width: 310
                 },
                 title: {
-                    text: json.title
+                    text: tw_type
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -36,7 +38,7 @@ $(function () {
                 series: [{
                     type: 'pie',
                     name: 'Answers',
-                    data: json.data
+                    data: json[tw_type].data
                 }]
             });
 
@@ -45,10 +47,10 @@ $(function () {
     }).fail(function( jqxhr, textStatus, error ) {
         var err = textStatus + ", " + error;
         console.log( "Request Failed: " + err );
-});
+    });
 
     setTimeout(function() {
         $('#container').css('display','inline');
         $('.highcharts-container').css('display','inline-block');
-    }, 100);
+    }, 300);
 });
