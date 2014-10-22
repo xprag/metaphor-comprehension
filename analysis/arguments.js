@@ -25,6 +25,7 @@ $(function () {
                 }
             }
 
+            // It adds <span> tags dynamically according to the tw_type number contained in the json object.
             $('#container').append($('<span>').attr('id', tw_type));
 
             $('#' + tw_type).highcharts({
@@ -60,8 +61,8 @@ $(function () {
         });
 
     }).fail(function( jqxhr, textStatus, error ) {
-        var err = textStatus + ", " + error;
-        console.log( "Request Failed: " + err );
+        var err = textStatus + ', ' + error;
+        console.log( 'Request Failed: ' + err );
     });
 
     setTimeout(function() {

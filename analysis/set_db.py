@@ -29,6 +29,7 @@ def read_store(data_file):
 			session.add(new_argument)
 			session.commit()
 
+#TODO - the sqlite file should be taken from a configuration file
 engine = create_engine('sqlite:///arguments.db')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
@@ -43,8 +44,7 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-data_file = '20_metaphor-comprehension_2014_Oct_17_1834.xlsx'
-data_file = '3_metaphor-comprehension_2014_Oct_17_1743.xlsx'
+# TODO - The files name should be taken reading into the data "metaphor-comprehension/data" directory
 data_files = ['20_metaphor-comprehension_2014_Oct_17_1834.xlsx', '3_metaphor-comprehension_2014_Oct_17_1743.xlsx']
 for data_file in data_files:
 	read_store(data_file)
