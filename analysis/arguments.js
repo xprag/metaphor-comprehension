@@ -6,11 +6,29 @@ $(function () {
 
     $.getJSON('./arguments.json', function (json) {
 
-        $.each(json, function(index, json) {
+        // this array allows to keep a strict order.
+        tw_types = [
+            // 'distrattore_distrattore',
+            'O_TPTC', 'O_TPFC', 'O_TPPC',
+            'P_TPTC', 'P_TPFC', 'P_TPPC',
+            'L_TPTC', 'L_TPFC', 'L_TPPC',
+            'V_TPTC', 'V_TPFC', 'V_TPPC'
+        ];
 
-            $('#container').append($('<span>').attr('id', json['title']));
+        $.each(tw_types, function(index, tw_type) {
 
-            $('#' + json['title']).highcharts({
+            // TODO - This check is made to display the right color; red for wrong and green for correct answers.
+            if(json[tw_type].data.length === 1) {
+                if(json[tw_type].data[0][0] === 'Correct') {
+                    json[tw_type].data[1] = json[tw_type].data[0];
+                    json[tw_type].data[0] = ['Wrong', 0];
+                }
+            }
+
+            // It adds <span> tags dynamically according to the tw_type number contained in the json object.
+            $('#container').append($('<span>').attr('id', tw_type));
+
+            $('#' + tw_type).highcharts({
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: 1,//null,
@@ -18,10 +36,10 @@ $(function () {
                     width: 400
                 },
                 title: {
-                    text: json.title
+                    text: tw_type
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b>'
                 },
                 plotOptions: {
                     pie: {
@@ -36,19 +54,19 @@ $(function () {
                 series: [{
                     type: 'pie',
                     name: 'Answers',
-                    data: json.data
+                    data: json[tw_type].data
                 }]
             });
 
         });
 
     }).fail(function( jqxhr, textStatus, error ) {
-        var err = textStatus + ", " + error;
-        console.log( "Request Failed: " + err );
-});
+        var err = textStatus + ', ' + error;
+        console.log( 'Request Failed: ' + err );
+    });
 
     setTimeout(function() {
         $('#container').css('display','inline');
         $('.highcharts-container').css('display','inline-block');
-    }, 100);
+    }, 300);
 });
