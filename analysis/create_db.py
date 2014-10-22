@@ -23,7 +23,7 @@ class Argument(Base):
     #conclusion = Column(String(250), nullable=False)
     #argument_time = Column(Numeric(precision = 5), nullable=False)
     response_to_question = Column(Boolean)
-    #response_time = Column(Numeric(precision = 5), nullable=False)
+    response_time = Column(Numeric(precision = 5), nullable=False)
     person_id = Column(Integer, ForeignKey('person.id'))
     person = relationship(Person)
 
