@@ -25,8 +25,7 @@ def read_store(data_file):
 			tw_type = sh.cell(rx, 1).value
 			argument_type = sh.cell(rx, 4).value
 			response_to_question = math.trunc(sh.cell(rx, 15).value)
-			response_time = sh.cell(rx, 18).value
-			new_argument = Argument(tw_type = tw_type, response_to_question = response_to_question, response_time = response_time, argument_type = argument_type, person = new_person)
+			new_argument = Argument(tw_type= tw_type, response_to_question = response_to_question, argument_type = argument_type, person=new_person)
 			session.add(new_argument)
 			session.commit()
 
