@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from create_db import Argument, Base, Person
 
-def read_store(data_file):
+def read_and_store(data_file):
 	data_dir = '../data/'
 	data_opened = xlrd.open_workbook(''.join([data_dir, data_file]))
 
@@ -45,8 +45,12 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-# TODO - The files name should be taken reading into the data "metaphor-comprehension/data" directory
-data_files = ['20_metaphor-comprehension_2014_Oct_17_1834.xlsx', '3_metaphor-comprehension_2014_Oct_17_1743.xlsx']
+# It returns a list with the data xlsx files
+def get_data_files_list():
+	import glob
+	return glob.glob("../data/*xlsx")
+
+data_files = get_data_files_list()
 for data_file in data_files:
-	read_store(data_file)
+	read_and_store(data_file)
 
