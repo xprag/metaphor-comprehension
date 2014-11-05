@@ -8,11 +8,11 @@ $(function () {
 
         // this array allows to keep a strict order.
         tw_types = [
-            // 'distrattore_distrattore',
             'O_TPTC', 'O_TPFC', 'O_TPPC',
             'P_TPTC', 'P_TPFC', 'P_TPPC',
             'L_TPTC', 'L_TPFC', 'L_TPPC',
-            'V_TPTC', 'V_TPFC', 'V_TPPC'
+            'V_TPTC', 'V_TPFC', 'V_TPPC',
+            'distrattore_distrattore'
         ];
 
         $.each(tw_types, function(index, tw_type) {
