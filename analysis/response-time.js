@@ -1,10 +1,10 @@
 $(function () {
+    'use strict';
 
     $.getJSON('./response-time.json', function (json) {
 
-        // console.log(json);
-        data =[];
-        categories = [
+        var data =[];
+        var categories = [
             'Distrattore',
             'O_TPTC', 'O_TPFC', 'O_TPPC',
             'P_TPTC', 'P_TPFC', 'P_TPPC',
@@ -16,7 +16,7 @@ $(function () {
             data.push(json[value]);
         });
 
-        $('#container').highcharts({
+        $('#reaction-time').highcharts({
             chart: {
                 type: 'column',
                 width: 1200

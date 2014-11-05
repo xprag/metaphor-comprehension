@@ -26,7 +26,7 @@ $(function () {
             }
 
             // It adds <span> tags dynamically according to the tw_type number contained in the json object.
-            $('#container').append($('<span>').attr('id', tw_type));
+            $('#reaction-time').append($('<span>').attr('id', tw_type));
 
             $('#' + tw_type).highcharts({
                 chart: {
