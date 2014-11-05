@@ -26,7 +26,8 @@ def read_and_store(data_file):
 			argument_type = sh.cell(rx, 4).value
 			response_to_question = math.trunc(sh.cell(rx, 15).value)
 			response_time = sh.cell(rx, 18).value
-			new_argument = Argument(tw_type = tw_type, response_to_question = response_to_question, response_time = response_time, argument_type = argument_type, person = new_person)
+			argument_block = sh.cell(rx, 7).value
+			new_argument = Argument(argument_block = argument_block, tw_type = tw_type, response_to_question = response_to_question, response_time = response_time, argument_type = argument_type, person = new_person)
 			session.add(new_argument)
 			session.commit()
 
@@ -53,4 +54,3 @@ def get_data_files_list():
 data_files = get_data_files_list()
 for data_file in data_files:
 	read_and_store(data_file)
-

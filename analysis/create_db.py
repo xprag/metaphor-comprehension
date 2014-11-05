@@ -11,6 +11,8 @@ class Person(Base):
     # Here we define columns for the table person
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
+    # The value 1 means the user is reliable, otherwise it will be 0
+    valid = Column(Boolean, default = 1)
 
 class Argument(Base):
     __tablename__ = 'argument'
@@ -19,7 +21,7 @@ class Argument(Base):
     id = Column(Integer, primary_key=True)
     tw_type = Column(String(10))
     argument_type = Column(String(10))
-    #argument_block = Column(String(1), nullable=False)
+    argument_block = Column(String(1), nullable=False)
     #conclusion = Column(String(250), nullable=False)
     #argument_time = Column(Numeric(precision = 5), nullable=False)
     response_to_question = Column(Boolean)
