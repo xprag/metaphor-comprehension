@@ -1,19 +1,32 @@
 $(function () {
+    'use strict';
 
     Highcharts.setOptions({
      colors: ['#ED561B', '#50B432']
     });
 
-    $.getJSON('./arguments.json', function (json) {
+    $.getJSON('./json/arguments.json', function (json) {
 
         // this array allows to keep a strict order.
-        tw_types = [
+        var tw_types = [
             'O_TPTC', 'O_TPFC', 'O_TPPC',
             'P_TPTC', 'P_TPFC', 'P_TPPC',
             'L_TPTC', 'L_TPFC', 'L_TPPC',
             'V_TPTC', 'V_TPFC', 'V_TPPC',
             'distrattore_distrattore'
         ];
+
+        var explicit_tw_type = function (tw_type) {
+            if (tw_type.indexOf('TPTC') > -1) {
+                return tw_type + '\<br>True Premises, True Conclusion';
+            } else if (tw_type.indexOf('TPFC') > -1) {
+                return tw_type + '\<br>True Premises, False Conclusion';
+            } else if (tw_type.indexOf('TPPC') > -1) {
+                return tw_type + '\<br>True Premises, Plausible Conclusion';
+            } else if (tw_type.indexOf('distrattore') > -1) {
+                return 'Distrattore';
+            }
+        }
 
         $.each(tw_types, function(index, tw_type) {
 
@@ -36,7 +49,7 @@ $(function () {
                     width: 400
                 },
                 title: {
-                    text: tw_type
+                    text: explicit_tw_type(tw_type)
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b>'

@@ -2,10 +2,10 @@
 $(function () {
     'use strict';
 
-    $.getJSON('./summary.json', function (json) {
+    $.getJSON('./json/summary.json', function (json) {
 
         var data = [];
-        var categories = ['Good', 'Bad'];
+        var categories = ['Trusted', 'Untrusted'];
 
         $.each(categories, function( index, value ) {
             data.push(json[value]);
@@ -34,7 +34,7 @@ $(function () {
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Population (millions)',
+                    text: 'Students (number)',
                     align: 'high'
                 },
                 labels: {
@@ -54,7 +54,7 @@ $(function () {
                 verticalAlign: 'top',
                 x: -40,
                 y: 100,
-                floating: true,
+                floating: false,
                 borderWidth: 1,
                 backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
                 shadow: true

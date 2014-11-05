@@ -1,7 +1,7 @@
 $(function () {
     'use strict';
 
-    $.getJSON('./response-time.json', function (json) {
+    $.getJSON('./json/response-time.json', function (json) {
 
         var data =[];
         var categories = [
