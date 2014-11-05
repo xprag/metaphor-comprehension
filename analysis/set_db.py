@@ -15,7 +15,7 @@ def read_and_store(data_file):
 
 	name = sh.cell_value(rowx=138, colx=1)
 	# Insert a Person in the person table
-	new_person = Person(name = name)
+	new_person = Person(name = name, file_name = data_file)
 	session.add(new_person)
 	session.commit()
 
@@ -26,7 +26,8 @@ def read_and_store(data_file):
 			argument_type = sh.cell(rx, 4).value
 			response_to_question = math.trunc(sh.cell(rx, 15).value)
 			response_time = sh.cell(rx, 18).value
-			new_argument = Argument(tw_type = tw_type, response_to_question = response_to_question, response_time = response_time, argument_type = argument_type, person = new_person)
+			argument_block = sh.cell(rx, 7).value
+			new_argument = Argument(argument_block = argument_block, tw_type = tw_type, response_to_question = response_to_question, response_time = response_time, argument_type = argument_type, person = new_person)
 			session.add(new_argument)
 			session.commit()
 
@@ -48,9 +49,8 @@ session = DBSession()
 # It returns a list with the data xlsx files
 def get_data_files_list():
 	import glob
-	return glob.glob("../data/*xlsx")
+	return glob.glob("../data/*.xlsx")
 
 data_files = get_data_files_list()
 for data_file in data_files:
 	read_and_store(data_file)
-

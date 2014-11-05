@@ -8,11 +8,11 @@ $(function () {
 
         // this array allows to keep a strict order.
         tw_types = [
-            // 'distrattore_distrattore',
             'O_TPTC', 'O_TPFC', 'O_TPPC',
             'P_TPTC', 'P_TPFC', 'P_TPPC',
             'L_TPTC', 'L_TPFC', 'L_TPPC',
-            'V_TPTC', 'V_TPFC', 'V_TPPC'
+            'V_TPTC', 'V_TPFC', 'V_TPPC',
+            'distrattore_distrattore'
         ];
 
         $.each(tw_types, function(index, tw_type) {
@@ -26,7 +26,7 @@ $(function () {
             }
 
             // It adds <span> tags dynamically according to the tw_type number contained in the json object.
-            $('#container').append($('<span>').attr('id', tw_type));
+            $('#reaction-time').append($('<span>').attr('id', tw_type));
 
             $('#' + tw_type).highcharts({
                 chart: {
