@@ -15,7 +15,7 @@ def read_and_store(data_file):
 
 	name = sh.cell_value(rowx=138, colx=1)
 	# Insert a Person in the person table
-	new_person = Person(name = name)
+	new_person = Person(name = name, file_name = data_file)
 	session.add(new_person)
 	session.commit()
 
@@ -49,7 +49,7 @@ session = DBSession()
 # It returns a list with the data xlsx files
 def get_data_files_list():
 	import glob
-	return glob.glob("../data/*xlsx")
+	return glob.glob("../data/*.xlsx")
 
 data_files = get_data_files_list()
 for data_file in data_files:

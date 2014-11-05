@@ -13,6 +13,8 @@ class Person(Base):
     name = Column(String(250), nullable=False)
     # The value 1 means the user is reliable, otherwise it will be 0
     valid = Column(Boolean, default = 1)
+    # The file name from where the data are taken
+    file_name = Column(String(250), nullable=False)
 
 class Argument(Base):
     __tablename__ = 'argument'
