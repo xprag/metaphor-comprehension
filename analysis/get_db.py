@@ -2,7 +2,7 @@ from create_db import Person, Base, Argument
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import select, text
-import json
+import json, sys
 
 engine = create_engine('sqlite:///arguments.db')
 Base.metadata.bind = engine
@@ -10,6 +10,8 @@ DBSession = sessionmaker()
 DBSession.bind = engine
 session = DBSession()
 conn = engine.connect()
+json_path = 'json/'
+threshold = sys.argv[1] or 0
 
 # Query to set the untrusted users.
 s = text('UPDATE person SET valid = 1')
@@ -22,7 +24,7 @@ UPDATE person SET valid = 0 where person.id in (
 	response_to_question = 0 and
 	person.id = argument.person_id and tw_type = 'distrattore' and argument_block <> 'P'
 	group by person.id, person.name, response_to_question
-	HAVING COUNT(*) > 0);
+	HAVING COUNT(*) > """ + threshold + """);
 """)
 conn.execute(s)
 
@@ -31,11 +33,11 @@ s = text('SELECT valid, count(id) FROM person GROUP BY valid;')
 json_data = {}
 for r in conn.execute(s).fetchall():
 	if r[0] == 0:
-		label = 'Bad'
+		label = 'Untrusted'
 	else:
-		label = 'Good'
+		label = 'Trusted'
 	json_data[label] = r[1]
-f = open('summary.json', 'w')
+f = open(json_path + 'summary.json', 'w')
 f.write(json.dumps(json_data))
 
 # Query to get the questions response divided per argument.
@@ -59,7 +61,7 @@ for r in conn.execute(s).fetchall():
 	except:
 		json_data[tw_type] = {}
 		json_data[tw_type]['data'] = [[label, r[3]]]
-f = open('arguments.json', 'w')
+f = open(json_path + 'arguments.json', 'w')
 f.write(json.dumps(json_data))
 
 # Query to get the average response time divided per argument.
@@ -76,5 +78,5 @@ for r in conn.execute(s).fetchall():
 	else:
 		tw_type = str(r[0] + '_' + r[1])
 	json_data[tw_type] = r[2]
-f = open('response-time.json', 'w')
+f = open(json_path + 'response-time.json', 'w')
 f.write(json.dumps(json_data))
