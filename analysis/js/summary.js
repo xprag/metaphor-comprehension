@@ -1,74 +1,76 @@
-/*global Highcharts, $*/
-$(function () {
+(function ($) {
     'use strict';
 
-    $.getJSON('./json/summary.json', function (json) {
+    var data,
+        categories,
+        highchartsObject;
 
-        var data = [];
-        var categories = ['Trusted', 'Untrusted'];
-
-        $.each(categories, function( index, value ) {
-            data.push(json[value]);
-        });
-        categories.push('Total');
-        data.push(eval(data.join('+')));
-
-        console.log(data);
-
-        $('#summary').highcharts({
-            chart: {
-                type: 'bar'
-            },
+    data = [];
+    categories = ['Trusted', 'Untrusted'];
+    highchartsObject = {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Summary'
+        },
+        subtitle: {
+            text: 'Source: metaphor-comprehension experiment - 24 October 2014 - Cagliari'
+        },
+        xAxis: {
+            categories: categories,
             title: {
-                text: 'Summary'
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Students (number)',
+                align: 'high'
             },
-            subtitle: {
-                text: 'Source: metaphor-comprehension experiment - 24 October 2014 - Cagliari'
-            },
-            xAxis: {
-                categories: categories,
-                title: {
-                    text: null
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
                 }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Students (number)',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 100,
-                floating: false,
-                borderWidth: 1,
-                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                shadow: true
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Number of students',
-                data: data
-            }]
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 100,
+            floating: false,
+            borderWidth: 1,
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Number of students',
+            data: data
+        }]
+    };
+    // Shorthand for $( document ).ready()
+    $(function () {
+        $.getJSON('./json/summary.json', function (json) {
+            categories.map(function (category) {
+                data.push(json[category]);
+            });
+            categories.push('Total');
+            data.push(data.reduce(function(previousValue, currentValue) {
+                return previousValue + currentValue;
+            }));
+            $('#summary').highcharts(highchartsObject);
+        }).fail(function(jqxhr, textStatus, error) {
+            throw new Error(jqxhr +  textStatus + ', ' + error);
         });
-    }).fail(function( jqxhr, textStatus, error ) {
-        var err = textStatus + ', ' + error;
-        console.log( 'Request Failed: ' + err );
     });
-});
+}(this.jQuery));

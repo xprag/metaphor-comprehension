@@ -1,85 +1,91 @@
-$(function () {
+(function ($) {
     'use strict';
 
-    Highcharts.setOptions({
-     colors: ['#ED561B', '#50B432']
-    });
+    var tw_types,
+        explicit_tw_type,
+        getHighchartConfig;
 
-    $.getJSON('./json/arguments.json', function (json) {
+    // this array allows to keep a strict order.
+    tw_types = [
+        'O_TPTC', 'O_TPFC', 'O_TPPC',
+        'P_TPTC', 'P_TPFC', 'P_TPPC',
+        'L_TPTC', 'L_TPFC', 'L_TPPC',
+        'V_TPTC', 'V_TPFC', 'V_TPPC',
+        'distrattore_distrattore'
+    ];
+    explicit_tw_type = function (tw_type) {
+        tw_type = tw_type
+            .replace(/^O_/, 'Omonimia<br>')
+            .replace(/^P_/, 'Polisemia<br>')
+            .replace(/^L_/, 'Metafore lessicalizzate<br>')
+            .replace(/^V_/, 'Metafore vive<br>')
+            .replace(/TPTC$/, 'True Premises, True Conclusion')
+            .replace(/TPFC$/, 'True Premises, False Conclusion')
+            .replace(/TPPC$/, 'True Premises, Plausible Conclusion')
+            .replace(/distrattore_distrattore/, 'Distrattore');
 
-        // this array allows to keep a strict order.
-        var tw_types = [
-            'O_TPTC', 'O_TPFC', 'O_TPPC',
-            'P_TPTC', 'P_TPFC', 'P_TPPC',
-            'L_TPTC', 'L_TPFC', 'L_TPPC',
-            'V_TPTC', 'V_TPFC', 'V_TPPC',
-            'distrattore_distrattore'
-        ];
-
-        var explicit_tw_type = function (tw_type) {
-            if (tw_type.indexOf('TPTC') > -1) {
-                return tw_type + '\<br>True Premises, True Conclusion';
-            } else if (tw_type.indexOf('TPFC') > -1) {
-                return tw_type + '\<br>True Premises, False Conclusion';
-            } else if (tw_type.indexOf('TPPC') > -1) {
-                return tw_type + '\<br>True Premises, Plausible Conclusion';
-            } else if (tw_type.indexOf('distrattore') > -1) {
-                return 'Distrattore';
-            }
-        }
-
-        $.each(tw_types, function(index, tw_type) {
-
-            // TODO - This check is made to display the right color; red for wrong and green for correct answers.
-            if(json[tw_type].data.length === 1) {
-                if(json[tw_type].data[0][0] === 'Correct') {
-                    json[tw_type].data[1] = json[tw_type].data[0];
-                    json[tw_type].data[0] = ['Wrong', 0];
+        return tw_type;
+    };
+    getHighchartConfig = function (json, tw_type) {
+        return {
+            colors: ['#ED561B', '#50B432'],
+            chart: {
+                // plotBackgroundColor: '#aaa',
+                plotBorderWidth: null,
+                plotShadow: true,
+                width: 400,
+                backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                    stops: [
+                        [0, '#ddd'],
+                        [1, '#eee']
+                    ]
                 }
-            }
+            },
+            title: {
+                text: explicit_tw_type(tw_type)
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Answers',
+                data: json[tw_type].data
+            }]
+        };
+    };
 
-            // It adds <span> tags dynamically according to the tw_type number contained in the json object.
-            $('#reaction-time').append($('<span>').attr('id', tw_type));
-
-            $('#' + tw_type).highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: 1,//null,
-                    plotShadow: false,
-                    width: 400
-                },
-                title: {
-                    text: explicit_tw_type(tw_type)
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: false
-                        },
-                        showInLegend: true
+    // Shorthand for $( document ).ready()
+    $(function () {
+        $.getJSON('./json/arguments.json', function (json) {
+            tw_types.map(function(tw_type) {
+                // TODO - This check is made to display the right color; red for wrong and green for correct answers.
+                if(json[tw_type].data.length === 1) {
+                    if(json[tw_type].data[0][0] === 'Correct') {
+                        json[tw_type].data[1] = json[tw_type].data[0];
+                        json[tw_type].data[0] = ['Wrong', 0];
                     }
-                },
-                series: [{
-                    type: 'pie',
-                    name: 'Answers',
-                    data: json[tw_type].data
-                }]
+                }
+                // It adds <span> tags dynamically according to the tw_type number contained in the json object.
+                $('#reaction-time').append($('<span>')
+                    .attr('class', 'plot-pie')
+                    .attr('id', tw_type));
+                $('#' + tw_type).highcharts(getHighchartConfig(json, tw_type));
+
             });
-
+        }).fail(function( jqxhr, textStatus, error ) {
+            throw new Error(jqxhr +  textStatus + ', ' + error);
         });
-
-    }).fail(function( jqxhr, textStatus, error ) {
-        var err = textStatus + ', ' + error;
-        console.log( 'Request Failed: ' + err );
     });
-
-    setTimeout(function() {
-        $('#container').css('display','inline');
-        $('.highcharts-container').css('display','inline-block');
-    }, 300);
-});
+}(this.jQuery));
