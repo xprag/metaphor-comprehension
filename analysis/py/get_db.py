@@ -2,15 +2,20 @@ from create_db import Person, Base, Argument
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import select, text
-import json, sys
+import json, sys, os
 
-engine = create_engine('sqlite:///arguments.db')
+db_file_name = 'arguments.db'
+if os.path.isfile(db_file_name):
+	engine = create_engine('///'.join(['sqlite:', db_file_name]))
+else:
+	raise Exception('The following file %s does not exist: ' % db_file_name)
+
 Base.metadata.bind = engine
 DBSession = sessionmaker()
 DBSession.bind = engine
 session = DBSession()
 conn = engine.connect()
-json_path = 'json/'
+json_path = '../json'
 threshold = sys.argv[1] or 0
 
 # Query to set the untrusted users.
@@ -37,7 +42,8 @@ for r in conn.execute(s).fetchall():
 	else:
 		label = 'Trusted'
 	json_data[label] = r[1]
-f = open(json_path + 'summary.json', 'w')
+# f = open(json_path + 'summary.json', 'w')
+f = open('/'.join([json_path, 'summary.json']), 'w')
 f.write(json.dumps(json_data))
 
 # Query to get the questions response divided per argument.
@@ -46,7 +52,7 @@ s = text("""
 	FROM argument, person
 	where
 	person.id = argument.person_id and argument_block <> 'P' and person.valid = 1
-	group by tw_type, argument_type, response_to_question
+	group by tw_type, argument_type, response_to_question;
 """)
 json_data = {}
 for r in conn.execute(s).fetchall():
@@ -61,22 +67,22 @@ for r in conn.execute(s).fetchall():
 	except:
 		json_data[tw_type] = {}
 		json_data[tw_type]['data'] = [[label, r[3]]]
-f = open(json_path + 'arguments.json', 'w')
+f = open('/'.join([json_path, 'arguments.json']), 'w')
 f.write(json.dumps(json_data))
 
 # Query to get the average response time divided per argument.
 s = text("""
-	SELECT tw_type, argument_type, avg(response_time) as response_time_avg, COUNT(*)
+	SELECT tw_type, avg(response_time) as response_time_avg, COUNT(*)
 	FROM argument, person
 	where person.id = argument.person_id and argument_block <> 'P' and person.valid = 1
-	group by tw_type, argument_type
+	group by tw_type;
 """)
 json_data = {}
 for r in conn.execute(s).fetchall():
 	if r[0] == 'distrattore':
 		tw_type = 'Distrattore'
 	else:
-		tw_type = str(r[0] + '_' + r[1])
-	json_data[tw_type] = r[2]
-f = open(json_path + 'response-time.json', 'w')
+		tw_type = str(r[0])
+	json_data[tw_type] = r[1]
+f = open('/'.join([json_path, 'response-time.json']), 'w')
 f.write(json.dumps(json_data))

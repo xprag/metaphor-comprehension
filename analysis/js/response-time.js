@@ -8,10 +8,7 @@
     data =[];
     categories = [
         'Distrattore',
-        'O_TPTC', 'O_TPFC', 'O_TPPC',
-        'P_TPTC', 'P_TPFC', 'P_TPPC',
-        'L_TPTC', 'L_TPFC', 'L_TPPC',
-        'V_TPTC', 'V_TPFC', 'V_TPPC'
+        'O', 'P', 'L', 'V'
     ];
     highchartConfig = {
         chart: {

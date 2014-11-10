@@ -20,12 +20,14 @@ while getopts ':hw:s:' option; do
 				echo "error: Not a number" >&2; exit 1
 			else
 				echo 'getting the data from the db ....'
-			   	python get_db.py  "$seed"
+				cd py
+				python get_db.py  "$seed"
 			fi
 		   	;;
 		w) 	seed=$OPTARG
 			if [[ $seed = 'y' ]]; then
 				echo 'writing the db from experimental data'
+				cd py
 				rm arguments.db
 				python create_db.py
 				python set_db.py
@@ -44,7 +46,7 @@ while getopts ':hw:s:' option; do
 	esac
 done
 shift $((OPTIND - 1))
-rm *.pyc
+#rm py/*.pyc
 # if [ "w" = "$1" ]; then
 # 	rm arguments.db
 # 	python create_db.py
