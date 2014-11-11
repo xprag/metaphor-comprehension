@@ -1,0 +1,7 @@
+#container {
+	display: inline;
+}
+
+.highcharts-container {
+	display: inline-block;
+}
