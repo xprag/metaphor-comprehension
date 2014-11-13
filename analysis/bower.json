@@ -1,0 +1,29 @@
+{
+  "name": "analysis",
+  "version": "0.0.1",
+  "homepage": "https://github.com/languageguide/metaphor-comprehension",
+  "authors": [
+    "Antonio Pierro <antonio.pierro@gmail.com>"
+  ],
+  "description": "Web-based tool to analyze experimental data",
+  "main": "index.html",
+  "keywords": [
+    "PsychoPy"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.15",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.3.1",
+    "highcharts": "~4.0.4",
+    "text": "~2.0.12"
+  }
+}
