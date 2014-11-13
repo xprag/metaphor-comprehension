@@ -35,7 +35,7 @@
                 plotShadow: true,
                 width: 400,
                 backgroundColor: {
-                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                    linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
                     stops: [
                         [0, '#ddd'],
                         [1, '#eee']
@@ -69,22 +69,22 @@
     // Shorthand for $( document ).ready()
     $(function () {
         $.getJSON('./json/arguments.json', function (json) {
-            tw_types.map(function(tw_type) {
+            tw_types.map(function (tw_type) {
                 // TODO - This check is made to display the right color; red for wrong and green for correct answers.
-                if(json[tw_type].data.length === 1) {
-                    if(json[tw_type].data[0][0] === 'Correct') {
+                if (json[tw_type].data.length === 1) {
+                    if (json[tw_type].data[0][0] === 'Correct') {
                         json[tw_type].data[1] = json[tw_type].data[0];
                         json[tw_type].data[0] = ['Wrong', 0];
                     }
                 }
                 // It adds <span> tags dynamically according to the tw_type number contained in the json object.
-                $('#reaction-time').append($('<span>')
+                $('#arguments').append($('<span>')
                     .attr('class', 'plot-pie')
                     .attr('id', tw_type));
                 $('#' + tw_type).highcharts(getHighchartConfig(json, tw_type));
 
             });
-        }).fail(function( jqxhr, textStatus, error ) {
+        }).fail(function (jqxhr, textStatus, error) {
             throw new Error(jqxhr +  textStatus + ', ' + error);
         });
     });

@@ -65,11 +65,11 @@
                 data.push(json[category]);
             });
             categories.push('Total');
-            data.push(data.reduce(function(previousValue, currentValue) {
+            data.push(data.reduce(function (previousValue, currentValue) {
                 return previousValue + currentValue;
             }));
             $('#summary').highcharts(highchartsObject);
-        }).fail(function(jqxhr, textStatus, error) {
+        }).fail(function (jqxhr, textStatus, error) {
             throw new Error(jqxhr +  textStatus + ', ' + error);
         });
     });
