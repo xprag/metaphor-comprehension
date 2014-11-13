@@ -78,20 +78,21 @@ write_json_file('arguments.json', json_data)
 
 # Query to get the average response time divided per argument.
 s = text("""
-    SELECT tw_type, avg(response_time) as response_time_avg, COUNT(*)
+    SELECT tw_type, argument_type, avg(response_time) as response_time_avg, COUNT(*)
     FROM argument, person
     WHERE
     person.id = argument.person_id and
-    argument_block <> 'P' and person.valid = 1
-    group by tw_type;
+    argument_block <> 'P' and person.valid = 1 and
+    argument_type = 'TPPC'
+    group by tw_type, argument_type;
 """)
 json_data = {}
 for r in conn.execute(s).fetchall():
-    if r[0] == 'distrattore':
+    if r['tw_type'] == 'distrattore':
         tw_type = 'Distrattore'
     else:
-        tw_type = str(r[0])
-    json_data[tw_type] = r[1]
+        tw_type = str(r['tw_type'] + '_' + r['argument_type'])
+    json_data[tw_type] = r['response_time_avg']
 write_json_file('response-time.json', json_data)
 
 # Query to get the t-test between two sample on response_time
@@ -101,12 +102,12 @@ from scipy.stats import ttest_ind
 from itertools import combinations
 import numpy as np
 s = text("""
-    SELECT tw_type, group_concat(response_time) as times
+    SELECT tw_type, argument_type, group_concat(response_time) as times
     FROM argument, person
     WHERE
     person.id = argument.person_id and
     argument_block <> 'P' and person.valid = 1 and
-    tw_type <> 'distrattore'
+    tw_type <> 'distrattore' and argument_type = 'TPPC'
     group by tw_type;
 """)
 twType_vs_times = {}
@@ -114,7 +115,7 @@ twTypes = []
 json_data = {}
 json_data['times'] = {}
 for r in conn.execute(s).fetchall():
-    tw_type = r['tw_type']
+    tw_type = r['tw_type'] + '_' + r['argument_type']
     twTypes.append(tw_type)
     # it converts an array of strings to an array of floats in numpy.
     times = r['times'].split(',')
@@ -154,5 +155,4 @@ for twTypes_combination in twTypes_combinations:
     label = ' vs '.join([twTypes_combination[0], twTypes_combination[1]])
     t, p = ttest_ind(a, b, equal_var=True)
     json_data['answers'][label] = np.around([t, p], decimals=3).tolist()
-print json_data['answers']
 write_json_file('t-test.json', json_data)

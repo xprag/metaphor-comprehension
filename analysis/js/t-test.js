@@ -18,22 +18,30 @@
         $.getJSON('./json/t-test.json', function (json) {
             $.each(json.times, function (combination, value) {
                 combination = combination
-                    .replace(/O/, 'Omonimia')
-                    .replace(/P/, 'Polisemiaimia')
-                    .replace(/L/, 'Metafore lessicalizzate')
-                    .replace(/V/, 'Metafore vive');
-                $('#t-test .table-time tbody').append(fill_table(combination, value));
-            });
-            $.each(json.answers, function (combination, value) {
-                combination = combination
+                    .replace(/O_/, 'Omonimia ')
+                    .replace(/P_/, 'Polisemia ')
+                    .replace(/L_/, 'Metafore lessicalizzate ')
+                    .replace(/V_/, 'Metafore vive ')
                     .replace(/TPTC/g, '(True Premises, True Conclusion)')
                     .replace(/TPFC/g, '(True Premises, False Conclusion)')
-                    .replace(/TPPC/g, '(True Premises, Plausible Conclusion)')
-                    .replace(/O_/g, 'Omonimia ')
-                    .replace(/P_/g, 'Polisemiaimia ')
-                    .replace(/L_/g, 'Metafore lessicalizzate ')
-                    .replace(/V_/g, 'Metafore vive ');
-                $('#t-test .table-correct-answers tbody').append(fill_table(combination, value));
+                    .replace(/TPPC/g, '(True Premises, Plausible Conclusion)');
+                $('.t-test .table-time tbody').append(fill_table(combination, value));
+            });
+            $.each(json.answers, function (combination, value) {
+
+                if ((combination.match(/TPPC/g) || []).length === 2) {
+                    combination = combination
+                        .replace(/TPTC/g, '(True Premises, True Conclusion)')
+                        .replace(/TPFC/g, '(True Premises, False Conclusion)')
+                        .replace(/TPPC/g, '(True Premises, Plausible Conclusion)')
+                        .replace(/O_/g, 'Omonimia ')
+                        .replace(/P_/g, 'Polisemia ')
+                        .replace(/L_/g, 'Metafore lessicalizzate ')
+                        .replace(/V_/g, 'Metafore vive ');
+                    $('.t-test .table-correct-answers tbody').append(fill_table(combination, value));
+                }
+
+
             });
         });
     });

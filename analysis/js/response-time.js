@@ -5,10 +5,12 @@
         categories,
         highchartConfig;
 
-    data =[];
+    data = [];
     categories = [
-        'Distrattore',
-        'O', 'P', 'L', 'V'
+        'O_TPPC',
+        'P_TPPC',
+        'L_TPPC',
+        'V_TPPC'
     ];
     highchartConfig = {
         chart: {
