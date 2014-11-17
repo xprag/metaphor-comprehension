@@ -5,3 +5,11 @@
 .highcharts-container {
 	display: inline-block;
 }
+
+.tab-pane h3 {
+	margin-left: 20px;
+}
+
+body {
+	margin-top: 75px;
+}

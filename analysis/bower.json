@@ -24,6 +24,7 @@
     "jquery": "~2.1.1",
     "bootstrap": "~3.3.1",
     "highcharts": "~4.0.4",
-    "text": "~2.0.12"
+    "text": "~2.0.12",
+    "StickyTableHeaders": "~0.1.12"
   }
 }
