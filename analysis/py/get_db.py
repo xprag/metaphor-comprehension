@@ -107,8 +107,8 @@ s = text("""
     WHERE
     person.id = argument.person_id and
     argument_block <> 'P' and person.valid = 1 and
-    tw_type <> 'distrattore' and argument_type = 'TPPC'
-    group by tw_type;
+    tw_type <> 'distrattore'
+    group by tw_type, argument_type;
 """)
 twType_vs_times = {}
 twTypes = []

@@ -13,10 +13,10 @@
                     plotShadow: true,
                     width: 400,
                     backgroundColor: {
-                        linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
                         stops: [
-                            [0, '#ddd'],
-                            [1, '#eee']
+                            [0, '#ffffff'],
+                            [1, '#eeeeee']
                         ]
                     }
                 },

@@ -9,7 +9,13 @@
             jquery: vendorDir + 'jquery/dist/jquery.min',
             bootstrap: vendorDir + 'bootstrap/dist/js/bootstrap.min',
             highcharts: vendorDir + 'highcharts/highcharts',
-            text: vendorDir + 'text/text'
+            text: vendorDir + 'text/text',
+            stickyTableHeaders: vendorDir + 'StickyTableHeaders/js/jquery.stickytableheaders'
+        },
+        shim: {
+            bootstrap: {
+                deps: ['jquery']
+            }
         }
     });
 
