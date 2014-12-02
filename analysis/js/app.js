@@ -2,24 +2,22 @@
     'use strict';
 
     define([
-        'jquery',
-        'text!../templates/nav-tabs',
-        'bootstrap',
-        'highcharts',
-        'summary',
-        'response-time',
-        'arguments',
-        't-test'
-    ], function ($, navTabsTemplate) {
+        'angular',
+        'route',
+        'angularUiRouter',
+        'uiRouterStyles'
+    ], function (angular, route) {
 
-        $(function () {
-            $('body').prepend(navTabsTemplate);
+        var app = angular.module('analysisApp', [
+            'ui.router',
+            'uiRouterStyles'
+        ]);
+
+        app.config(route);
+        angular.element().ready(function () {
+            angular.bootstrap(document, ['analysisApp']);
         });
 
-        return {
-            start: function () {
-                $('#analysis-tabs a:last').tab('show');
-            }
-        };
+        return app;
     });
 }(this.define));
