@@ -1,0 +1,25 @@
+{
+  "name": "components-revealjs",
+  "description": "Shim repository for Reveal.js HTML Presentation Framework",
+  "version": "2.6.2",
+  "license": "MIT",
+  "main": [
+    "js/reveal.js",
+    "css/reveal.css"
+  ],
+  "ignore": [
+    "Makefile",
+    "component.json",
+    "composer.json"
+  ],
+  "homepage": "https://github.com/components/revealjs",
+  "_release": "2.6.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.6.2",
+    "commit": "644d6ad9772c12543bdbc044d0ade5d77b9b9029"
+  },
+  "_source": "git://github.com/components/revealjs.git",
+  "_target": "~2.6.2",
+  "_originalSource": "components-revealjs"
+}
