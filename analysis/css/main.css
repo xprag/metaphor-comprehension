@@ -6,6 +6,10 @@
 	display: inline-block;
 }
 
+.nav.nav-tabs {
+    background-color: #ffffff;
+}
+
 .tab-pane h3 {
 	margin-left: 20px;
 }

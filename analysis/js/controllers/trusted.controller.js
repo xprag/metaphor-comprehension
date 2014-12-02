@@ -3,8 +3,10 @@
 
     define([
         'jquery',
-        'text!../templates/trusted-students'
-    ], function ($, trustedStudentsTemplate) {
+        'text!../../json/summary.json',
+        'highcharts'
+    ], function ($, summaryData) {
+
         var data,
             categories,
             highchartsObject;
@@ -16,7 +18,7 @@
                 type: 'bar'
             },
             title: {
-                text: 'Summary'
+                text: 'Total number of participants divided into good and poor group according to performance criteria.'
             },
             subtitle: {
                 text: 'Source: metaphor-comprehension experiment - 24 October 2014 - Cagliari'
@@ -62,23 +64,19 @@
                 data: data
             }]
         };
-
-        // Shorthand for $( document ).ready()
-        $(function () {
-            // It loads the template
-            $('.tab-content').append(trustedStudentsTemplate);
-            $.getJSON('./json/summary.json', function (json) {
-                categories.map(function (category) {
-                    data.push(json[category]);
-                });
-                categories.push('Total');
-                data.push(data.reduce(function (previousValue, currentValue) {
-                    return previousValue + currentValue;
-                }));
-                $('#summary').highcharts(highchartsObject);
-            }).fail(function (jqxhr, textStatus, error) {
-                throw new Error(jqxhr +  textStatus + ', ' + error);
-            });
+        summaryData = JSON.parse(summaryData);
+        categories.map(function (category) {
+            data.push(summaryData[category]);
         });
+        categories.push('Total');
+        data.push(data.reduce(function (previousValue, currentValue) {
+            return previousValue + currentValue;
+        }));
+
+        return function ($scope) {
+            $scope.$on('$viewContentLoaded', function () {
+                $('#summary').highcharts(highchartsObject);
+            });
+        };
     });
 }(this.define));

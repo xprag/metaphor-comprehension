@@ -3,10 +3,10 @@
 
     define([
         'jquery',
-        'text!../templates/response-time-plot',
+        'text!../../json/response-time.json',
         'factories/explicit-name',
         'factories/get-histogram-plot'
-    ], function ($,  responseTimePlotTemplate, explicitName, getPlot) {
+    ], function ($, responseTimeData, explicitName, getPlot) {
 
         var data,
             categories,
@@ -28,17 +28,15 @@
 
             return getPlot(data, explicitCategories);
         };
+        responseTimeData = JSON.parse(responseTimeData);
+        categories.map(function (value) {
+            data.push(responseTimeData[value]);
+        });
 
-        // Shorthand for $( document ).ready()
-        $(function () {
-            // It loads the template
-            $('.tab-content').append(responseTimePlotTemplate);
-            $.getJSON('./json/response-time.json', function (json) {
-                categories.map(function (value) {
-                    data.push(json[value]);
-                });
+        return function ($scope) {
+            $scope.$on('$viewContentLoaded', function () {
                 $('#reaction-time').highcharts(getHighchartConfig(data));
             });
-        });
+        };
     });
 }(this.define));
