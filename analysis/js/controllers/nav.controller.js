@@ -4,11 +4,15 @@
     define([
         'jquery'
     ], function ($) {
-        return function ($scope) {
-            $scope.$on('$viewContentLoaded', function () {
-                $('.nav.nav-tabs li').click(function () {
-                    $(this).addClass('active');
+        return function () {
+
+            var $navList = $('.nav.nav-tabs li');
+
+            $navList.click(function () {
+                $navList.map(function (index) {
+                    $($navList[index]).removeClass('active');
                 });
+                $(this).addClass('active');
             });
         };
     });

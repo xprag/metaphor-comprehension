@@ -10,14 +10,14 @@
         'views/answer-t-test.view'
     ], function (navView, trustedView, timeTtestView, timePlotView, answerPlotView, answerTtestView) {
         return function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/home');
             $stateProvider
-                .state('/', navView)
-                .state('trusted', trustedView)
-                .state('time-t-test', timeTtestView)
-                .state('time-plot', timePlotView)
-                .state('answer-plot', answerPlotView)
-                .state('answer-t-test', answerTtestView);
+                .state('home', navView)
+                .state('home.trusted', trustedView)
+                .state('home.time-t-test', timeTtestView)
+                .state('home.time-plot', timePlotView)
+                .state('home.answer-plot', answerPlotView)
+                .state('home.answer-t-test', answerTtestView);
         };
     });
 }(this.define));

@@ -9,19 +9,19 @@
         var vendorDir = 'bower_components/';
 
         return {
-            url: '/',
+            url: '/home',
             data: {
                 css: [
                     vendorDir + 'bootstrap/dist/css/bootstrap.min.css',
                     'css/main.css'
                 ]
             },
-            views: {
-                navView: {
+            // views: {
+            //     navView: {
                     template: indexTemplate,
                     controller: navController
-                }
-            }
+            //     }
+            // }
         };
     });
 }(this.define))
