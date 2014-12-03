@@ -9,7 +9,7 @@
             var $navList = $('.nav.nav-tabs li');
 
             $navList.click(function () {
-                $navList.map(function (index) {
+                $navList.each(function (index) {
                     $($navList[index]).removeClass('active');
                 });
                 $(this).addClass('active');

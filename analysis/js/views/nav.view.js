@@ -16,12 +16,8 @@
                     'css/main.css'
                 ]
             },
-            // views: {
-            //     navView: {
-                    template: indexTemplate,
-                    controller: navController
-            //     }
-            // }
+            template: indexTemplate,
+            controller: navController
         };
     });
 }(this.define))
