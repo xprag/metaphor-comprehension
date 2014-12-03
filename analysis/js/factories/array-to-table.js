@@ -3,17 +3,16 @@
 
     define([
         'jquery',
-        'factories/explicit-name'
-    ], function ($, explicitName) {
+        'factories/explicit-name',
+        'factories/tw-type-list'
+    ], function ($, explicitName, twTypeList) {
         return function (json) {
 
             // TODO: make the code more readable.
             // You should change the json t-test object; the key should be an array
             // example: {"L_TPFC vs V_TPFC": [-0.574, 0.566]} should be {["L_TPFC","V_TPFC"]: [-0.574, 0.566]}
             // and then you should use JSON.stringify after sorting the array.
-            var combinations,
-                headers = [],
-                rows = [],
+            var rows = [],
                 $table = $('<table>'),
                 $tr,
                 $td,
@@ -21,26 +20,17 @@
                 td_inverse,
                 pt_value;
 
-            $.each(json, function (combination) {
-                combinations = combination.split(' vs ');
-                combinations.map(function (head_text) {
-                    if (headers.indexOf(head_text) === -1) {
-                        headers.push(head_text);
-                    }
-                });
-            });
-            headers.sort();
             rows[0] = [''];
-            headers.map(function (value) {
+            twTypeList.map(function (value) {
                 rows[0].push(value);
             });
             // It fills the rows starting from the second one
-            headers.map(function (value, index) {
+            twTypeList.map(function (value, index) {
                 // It creates the first column of the table
                 rows[index + 1] = [];
                 rows[index + 1].push(value);
                 // It creates the cell starting from the second row and the second column
-                headers.map(function (value2) {
+                twTypeList.map(function (value2) {
                     rows[index + 1].push(value + ' vs ' + value2);
                 });
 
