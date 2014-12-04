@@ -2,8 +2,7 @@
     'use strict';
 
     define([
-        'text!../../templates/nav.html',
-        '../controllers/nav.controller'
+        'text!../../templates/nav.html'
     ], function (indexTemplate, navController) {
 
         var vendorDir = 'bower_components/';
@@ -16,8 +15,7 @@
                     'css/main.css'
                 ]
             },
-            template: indexTemplate,
-            controller: navController
+            template: indexTemplate
         };
     });
 }(this.define))
