@@ -10,11 +10,6 @@
 
         return {
             url: '/response-t-test',
-            data: {
-                css: [
-                    'css/table.css'
-                ]
-            },
             template: timeTtestTemplate,
             controller: timeTtestController
         };
