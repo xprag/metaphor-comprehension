@@ -4,17 +4,15 @@
     define([
         'angular',
         'route',
-        'directives/active-tab',
-        'angularUiRouter',
-        'uiRouterStyles'
-    ], function (angular, route, activeTabDirective) {
+        'directives/navbar.directive',
+        'angularUiRouter'
+    ], function (angular, route, navbarDirective) {
 
         var app = angular.module('analysisApp', [
-            'ui.router',
-            'uiRouterStyles'
+            'ui.router'
         ]);
 
-        app.directive('activeTab', activeTabDirective);
+        app.directive('navbar', navbarDirective);
         app.config(route);
         angular.element().ready(function () {
             angular.bootstrap(document, ['analysisApp']);
