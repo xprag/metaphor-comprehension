@@ -10,7 +10,7 @@
 
         tTestData = JSON.parse(tTestData);
 
-        return function ($scope) {
+        return ['$scope', function ($scope) {
             $scope.$on('$viewContentLoaded', function () {
                 $('.t-test.response-time')
                     .append(arrayToTableFactory(tTestData.times));
@@ -19,6 +19,6 @@
                         fixedOffset: $('.navbar-fixed-top')
                     });
             });
-        };
+        }];
     });
 }(this.define));
