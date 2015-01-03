@@ -33,10 +33,10 @@
             data.push(responseTimeData[value]);
         });
 
-        return function ($scope) {
+        return ['$scope', function ($scope) {
             $scope.$on('$viewContentLoaded', function () {
                 $('#reaction-time').highcharts(getHighchartConfig(data));
             });
-        };
+        }];
     });
 }(this.define));

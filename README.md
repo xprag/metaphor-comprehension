@@ -29,3 +29,5 @@ Experiment Analysis
 
 The experimental results will be stored inside the "metaphor-comprehension/data/" directory.
 
+To view the results of the experiments go to the [Metaphor comprehension analysis section](./analysis/README.md)
+

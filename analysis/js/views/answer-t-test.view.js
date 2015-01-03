@@ -9,12 +9,7 @@
         var vendorDir = 'bower_components/';
 
         return {
-            url: '/response-t-test',
-            data: {
-                css: [
-                    'css/table.css'
-                ]
-            },
+            url: '/answer-t-test',
             template: answerTtestTemplate,
             controller: answerTtestController
         };

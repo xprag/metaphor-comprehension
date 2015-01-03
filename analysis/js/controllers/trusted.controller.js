@@ -73,10 +73,10 @@
             return previousValue + currentValue;
         }));
 
-        return function ($scope) {
+        return ['$scope', function ($scope) {
             $scope.$on('$viewContentLoaded', function () {
                 $('#summary').highcharts(highchartsObject);
             });
-        };
+        }];
     });
 }(this.define));

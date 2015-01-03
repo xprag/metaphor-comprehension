@@ -1,19 +1,6 @@
-#container {
-	display: inline;
-}
+/* Vendor css files */
+@import url('../bower_components/bootstrap/dist/css/bootstrap.min.css');
 
-.highcharts-container {
-	display: inline-block;
-}
-
-.nav.nav-tabs {
-    background-color: #ffffff;
-}
-
-.tab-pane h3 {
-	margin-left: 20px;
-}
-
-body {
-	margin-top: 75px;
-}
+/* App css files */
+@import url('app.css');
+@import url('table.css');
