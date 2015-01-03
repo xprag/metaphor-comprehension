@@ -29,10 +29,18 @@ To determinate the trusted students, run the bash script named `main.sh` with th
 
 	./main.sh -s 5
 
-The `s option accepts a number which stands for the minimum number of distractors questions wrong.
+The `s` option accepts a number which stands for the minimum number of distractors questions wrong.
 
 To view the data you can lunch the built-in web server with the following command:
 
     php -S localhost:8001
 
 Finally you can access the analysis data by opening a browser and navigating to the following URL: `http://localhost:8001`.
+
+Minification
+---
+
+The biggest time drain is minification.
+
+    node  ../bower_components/r.js/dist/r.js -o app.build.js
+    node  ../bower_components/r.js/dist/r.js -o style.build.js
