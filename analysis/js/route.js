@@ -8,7 +8,7 @@
         'views/answer-plot.view',
         'views/answer-t-test.view'
     ], function (trustedView, timeTtestView, timePlotView, answerPlotView, answerTtestView) {
-        return function ($stateProvider, $urlRouterProvider) {
+        return ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/home');
             $stateProvider
                 .state('trusted', trustedView)
@@ -16,6 +16,6 @@
                 .state('time-plot', timePlotView)
                 .state('answer-plot', answerPlotView)
                 .state('answer-t-test', answerTtestView);
-        };
+        }];
     });
 }(this.define));
