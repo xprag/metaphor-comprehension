@@ -13,14 +13,14 @@ Form.prototype.setInstruction = function (message) {
 
     item.setTitle('Istruzioni ')
         .setHelpText(message);
-    this.form.addPageBreakItem();
+    // this.form.addPageBreakItem();
 };
 
 Form.prototype.readSpreadsheet = function (spreadsheetID) {
 
     var sheet = SpreadsheetApp.openById(spreadsheetID);
     // TODO - uncomment the getRange parameter to get all rows
-    var rows = sheet.getRange('A2:I4').getValues();
+    var rows = sheet.getRange('A2:I129').getValues();
     var premise1,
         premise2,
         conclusion,
@@ -45,16 +45,17 @@ Form.prototype.setUserQuestions = function () {
     var item;
 
     item = this.form.addTextItem();
-    item.setTitle('Nickname');
+    item.setTitle('Nickname').setRequired(true);;
     item = this.form.addTextItem();
-    item.setTitle('Età');
+    item.setTitle('Età').setRequired(true);;
     item = this.form.addMultipleChoiceItem();
     item.setTitle('Genere (M/F)')
         .setChoices([
             item.createChoice('M'),
             item.createChoice('F')
-        ]);
-    this.form.addPageBreakItem();
+        ])
+        .setRequired(true);;
+    // this.form.addPageBreakItem();
 };
 
 Form.prototype.setQuestions = function () {
@@ -71,8 +72,9 @@ Form.prototype.setQuestions = function () {
             .setChoices([
                 item.createChoice('Si'),
                 item.createChoice('No')
-            ]);
-        form.addPageBreakItem();
+            ])
+            .setRequired(true);
+        // form.addPageBreakItem();
     });
 };
 
@@ -81,6 +83,11 @@ Form.prototype.setConclusion = function (message) {
     this.form.addSectionHeaderItem()
         .setTitle(message.title)
         .setHelpText(message.subTitle);
+};
+
+Form.prototype.addPageBreakItem = function () {
+
+    this.form.addPageBreakItem();
 };
 
 function main(){
@@ -94,18 +101,20 @@ function main(){
         name: 'form-online'
     });
 
-    var instruction = 'State per iniziare un esperimento che riguarda il rapporto tra linguaggio e argomentazione.\nTrovate di seguito le istruzioni. I risultati saranno anonimi.\n\n';
+    var instruction;
 
-    instruction += 'Leggerete degli argomenti composti da tre frasi:\n\n';
+    instruction = 'State per iniziare un esperimento che riguarda il rapporto tra linguaggio e argomentazione.\nTrovate di seguito le istruzioni. I risultati saranno anonimi.\n\n';
+    form.setInstruction(instruction);
+    form.addPageBreakItem();
+    form.setUserQuestions();
+    instruction = 'Leggerete degli argomenti composti da tre frasi:\n\n';
     instruction += 'due premesse (P1 e P2) e una conclusione (C).\n\n';
     instruction += 'Dopo aver letto attentamente le tre frasi, giudicate se la conclusione segue dalle premesse, rispondendo:\n\n';
     instruction += 'SI (La conclusione SEGUE dalle premesse)\n\n';
     instruction += 'oppure:\n\n';
     instruction += 'NO (La conclusione NON SEGUE dalle premesse)';
-
     form.setInstruction(instruction);
-    form.setInstruction(instruction);
-    form.setUserQuestions();
+    // The spreadsheet id corresponds to the spreadsheet file named arguments-online.
     form.readSpreadsheet('1e3UnVn82xXnbDd5RjAEtfvx8YjLYsJDLpCs3OJJaGGY');
     form.setQuestions();
     form.setConclusion({
