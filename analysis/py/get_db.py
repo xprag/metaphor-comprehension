@@ -1,7 +1,12 @@
+# TODO improve code quality - is not readability
+
 from create_db import Person, Base, Argument
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import select, text
+from scipy.stats import ttest_ind
+from itertools import combinations
+from numpy import around, array, float, mean, std
 import json
 import sys
 import os
@@ -20,10 +25,37 @@ conn = engine.connect()
 json_path = '../json'
 threshold = sys.argv[1]
 
-
 def write_json_file(file_name, json_data):
     f = open('/'.join([json_path, file_name]), 'w')
     f.write(json.dumps(json_data))
+
+
+def getParticipantsGroupedByGender():
+    # this method gets participants grouped by gender
+    s = text('SELECT  gender, count(id) FROM person GROUP BY  gender;')
+    json_data = {}
+    for r in conn.execute(s).fetchall():
+        if r[0] == 'F':
+            label = 'Female'
+        else:
+            label = 'Male'
+        json_data[label] = r[1]
+    print json_data
+
+def getParticipantsGroupedByAge():
+    # this method gets participants grouped by gender and age + standard deviation
+    query = text('SELECT age FROM person WHERE person.valid = 1;')
+    tpls = conn.execute(query).fetchall()
+    data = [x[0] for x in tpls]
+    print data
+    print round(mean(data), 2)
+    print round(std(data), 2)
+
+# Query to correct input data (M instead of m).
+s = text('UPDATE person SET gender = "M" WHERE gender = "m"' )
+conn.execute(s)
+s = text('UPDATE person SET gender = "F" WHERE gender = "f"' )
+conn.execute(s)
 
 # Query to set the untrusted users.
 s = text('UPDATE person SET valid = 1')
@@ -95,64 +127,83 @@ for r in conn.execute(s).fetchall():
     json_data[tw_type] = r['response_time_avg']
 write_json_file('response-time.json', json_data)
 
-# Query to get the t-test between two sample on response_time
-# http://stackoverflow.com/questions/22611446/perform-2-sample-t-test
-# http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.stats.ttest_ind.html
-from scipy.stats import ttest_ind
-from itertools import combinations
-import numpy as np
-s = text("""
-    SELECT tw_type, argument_type, group_concat(response_time) as times
-    FROM argument, person
-    WHERE
-    person.id = argument.person_id and
-    argument_block <> 'P' and person.valid = 1 and
-    tw_type <> 'distrattore'
-    group by tw_type, argument_type;
-""")
-twType_vs_times = {}
-twTypes = []
-json_data = {}
-json_data['times'] = {}
-for r in conn.execute(s).fetchall():
-    tw_type = r['tw_type'] + '_' + r['argument_type']
-    twTypes.append(tw_type)
-    # it converts an array of strings to an array of floats in numpy.
-    times = r['times'].split(',')
-    twType_vs_times[tw_type] = np.array(times, dtype='|S4').astype(np.float)
-twTypes_combinations = list(combinations(twTypes, 2))
-for twTypes_combination in twTypes_combinations:
-    a = twType_vs_times[twTypes_combination[0]]
-    b = twType_vs_times[twTypes_combination[1]]
-    label = ' vs '.join([twTypes_combination[0], twTypes_combination[1]])
-    t, p = ttest_ind(a, b, equal_var=True)
-    json_data['times'][label] = np.around([t, p], decimals=3).tolist()
+# TODO:  avoid redundancy between getResponseTimeTTest and getAnswersTTest 
+def getResponseTimeTTest():
+    # Method to get the t-test between two sample on response_time
+    # http://stackoverflow.com/questions/22611446/perform-2-sample-t-test
+    # http://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.stats.ttest_ind.html
+    s = text("""
+        SELECT tw_type, argument_type, group_concat(response_time) as times
+        FROM argument, person
+        WHERE
+        person.id = argument.person_id and
+        argument_block <> 'P' and person.valid = 1 and
+        tw_type <> 'distrattore'
+        group by tw_type, argument_type;
+    """)
+    result = {}
+    twType_vs_times = {}
+    twTypes = []
+    for r in conn.execute(s).fetchall():
+        tw_type = r['tw_type'] + '_' + r['argument_type']
+        twTypes.append(tw_type)
+        # it converts an array of strings to an array of floats in numpy.
+        times = r['times'].split(',')
+        twType_vs_times[tw_type] = array(times, dtype='|S4').astype(float)
+    twTypes_combinations = list(combinations(twTypes, 2))
+    for twTypes_combination in twTypes_combinations:
+        a = twType_vs_times[twTypes_combination[0]]
+        b = twType_vs_times[twTypes_combination[1]]
+        label = ' vs '.join([twTypes_combination[0], twTypes_combination[1]])
+        t, p = ttest_ind(a, b, equal_var=True)
+        mean_a = round(mean(a), 2)
+        mean_b = round(mean(b), 2)
+        std_a = round(std(a), 2)
+        std_b = round(std(b), 2)
+        result[label] = around([t, p, mean_a, std_a, mean_b, std_b], decimals = 3).tolist()
+    return result
 
-# Query to get the t-test between two sample of answers
-s = text("""
-    SELECT
-    tw_type, argument_type, group_concat(response_to_question) as responses
-    FROM argument, person
-    WHERE
-    person.id = argument.person_id and
-    argument_block <> 'P' and person.valid = 1 and
-    tw_type <> 'distrattore'
-    group by tw_type, argument_type;
-""")
-twType_vs_times = {}
-twTypes = []
-json_data['answers'] = {}
-for r in conn.execute(s).fetchall():
-    tw_type = r['tw_type'] + '_' + r['argument_type']
-    twTypes.append(tw_type)
-    # it converts an array of strings to an array of floats in numpy.
-    times = r['responses'].split(',')
-    twType_vs_times[tw_type] = np.array(times, dtype='|S4').astype(np.float)
-twTypes_combinations = list(combinations(twTypes, 2))
-for twTypes_combination in twTypes_combinations:
-    a = twType_vs_times[twTypes_combination[0]]
-    b = twType_vs_times[twTypes_combination[1]]
-    label = ' vs '.join([twTypes_combination[0], twTypes_combination[1]])
-    t, p = ttest_ind(a, b, equal_var=True)
-    json_data['answers'][label] = np.around([t, p], decimals=3).tolist()
+def getAnswersTTest():
+    # Query to get the t-test between two sample of answers
+    s = text("""
+        SELECT
+        tw_type, argument_type, group_concat(response_to_question) as responses
+        FROM argument, person
+        WHERE
+        person.id = argument.person_id and
+        argument_block <> 'P' and person.valid = 1 and
+        tw_type <> 'distrattore'
+        group by tw_type, argument_type;
+    """)
+    twType_vs_times = {}
+    twTypes = []
+    result = {}
+    for r in conn.execute(s).fetchall():
+        tw_type = r['tw_type'] + '_' + r['argument_type']
+        twTypes.append(tw_type)
+        # it converts an array of strings to an array of floats in numpy.
+        times = r['responses'].split(',')
+        twType_vs_times[tw_type] = array(times, dtype='|S4').astype(float)
+    twTypes_combinations = list(combinations(twTypes, 2))
+    for twTypes_combination in twTypes_combinations:
+        a = twType_vs_times[twTypes_combination[0]]
+        b = twType_vs_times[twTypes_combination[1]]
+        label = ' vs '.join([twTypes_combination[0], twTypes_combination[1]])
+        mean_a = round(mean(a), 2)
+        mean_b = round(mean(b), 2)
+        std_a = round(std(a), 2)
+        std_b = round(std(b), 2)
+        t, p = ttest_ind(a, b, equal_var=True)
+        result[label] = around([t, p, mean_a, std_a, mean_b, std_b], decimals=3).tolist()
+    return result
+
+# TODO - create two distinct json files after fixing the following issue
+# https://github.com/Homebrew/homebrew-core/issues/11713
+json_data= {}
+json_data['answers'] = getAnswersTTest()
+json_data['times'] = getResponseTimeTTest()
 write_json_file('t-test.json', json_data)
+
+# getParticipantsGroupedByGenderAndAge()
+getParticipantsGroupedByGender()
+getParticipantsGroupedByAge()
