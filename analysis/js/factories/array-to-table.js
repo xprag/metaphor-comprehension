@@ -50,6 +50,10 @@
                         if (tdSplit[2] !== tdSplit[0]) {
                             pt_value = json[td] || json[td_inverse];
                             td = 't = ' + pt_value[0] + '<br> p ' + ((pt_value[1] === 0) ? '< 0.001' : ' = ' + pt_value[1]);
+                            td += '<br>avg1 = ' + pt_value[2];
+                            td += '<br>std1 = ' + pt_value[3];
+                            td += '<br>avg2 = ' + pt_value[4];
+                            td += '<br>std2 = ' + pt_value[5];
                         } else {
                             td = '-';
                         }
