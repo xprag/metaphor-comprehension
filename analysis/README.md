@@ -40,7 +40,7 @@ Finally you can access the analysis data by opening a browser and navigating to 
 Minification
 ---
 
-The biggest time drain is minification.
+    cd ./analysis/js
 
     node  ../bower_components/r.js/dist/r.js -o app.build.js
     node  ../bower_components/r.js/dist/r.js -o style.build.js
