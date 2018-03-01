@@ -13,6 +13,8 @@ class Person (Base):
     # Here we define columns for the table person
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
+    age = Column(Integer, nullable=False)
+    gender = Column(String(250), nullable=False)
     # The value 1 means the user is reliable, otherwise it will be 0
     valid = Column(Boolean, default=1)
     # The file name from where the data are taken
