@@ -12,7 +12,7 @@ Prerequisites:
 Installation
 ------------
 
-Get the data output file named. In order to get the stimuli file, you can send an email to antonio.pierro_at_gmail.com or francesca.ervas_at_gmail.com.
+Get the data output file named "metaphor-comprehension-data.zip" and unzip the zip file in "metaphor-comprehension" directory. In order to get the data file, you can send an email to antonio.pierro_at_gmail.com or francesca.ervas_at_gmail.com.
 
 Install package
 
