@@ -4,9 +4,9 @@ from create_db import Person, Base, Argument
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import select, text
-from scipy.stats import ttest_ind
+from scipy.stats import ttest_ind, f_oneway
 from itertools import combinations
-from numpy import around, array, float, mean, std
+from numpy import around, array, float, mean, std, ndarray
 import json
 import sys
 import os
@@ -48,8 +48,8 @@ def getParticipantsGroupedByAge():
     tpls = conn.execute(query).fetchall()
     data = [x[0] for x in tpls]
     print data
-    print round(mean(data), 2)
-    print round(std(data), 2)
+    # print round(mean(data), 2)
+    # print round(std(data), 2)
 
 # Query to correct input data (M instead of m).
 s = text('UPDATE person SET gender = "M" WHERE gender = "m"' )
@@ -127,7 +127,7 @@ for r in conn.execute(s).fetchall():
     json_data[tw_type] = r['response_time_avg']
 write_json_file('response-time.json', json_data)
 
-# TODO:  avoid redundancy between getResponseTimeTTest and getAnswersTTest 
+# TODO:  avoid redundancy between getResponseTimeTTest and getAnswersTTest
 def getResponseTimeTTest():
     # Method to get the t-test between two sample on response_time
     # http://stackoverflow.com/questions/22611446/perform-2-sample-t-test
@@ -155,13 +155,44 @@ def getResponseTimeTTest():
         a = twType_vs_times[twTypes_combination[0]]
         b = twType_vs_times[twTypes_combination[1]]
         label = ' vs '.join([twTypes_combination[0], twTypes_combination[1]])
-        t, p = ttest_ind(a, b, equal_var=True)
+        t, p = ttest_ind(a, b)
         mean_a = round(mean(a), 2)
         mean_b = round(mean(b), 2)
         std_a = round(std(a), 2)
         std_b = round(std(b), 2)
         result[label] = around([t, p, mean_a, std_a, mean_b, std_b], decimals = 3).tolist()
     return result
+
+# TODO:  avoid redundancy between getResponseTimeTTest and getAnswersTTest
+def getResponseTimeAnova():
+    import csv
+    import pandas as pd
+    from statsmodels.formula.api import ols
+    from statsmodels.stats.anova import anova_lm
+    from statsmodels.graphics.factorplots import interaction_plot
+    from scipy import stats
+    s = text("""
+        SELECT tw_type, argument_type, response_time
+        FROM argument, person
+        WHERE
+        person.id = argument.person_id and
+        argument_block <> 'P' and person.valid = 1 and
+        tw_type <> 'distrattore'
+    """)
+    file_name = 'responseTime.csv'
+    with open(file_name, 'wr') as csvfile:
+        spamwriter = csv.writer(csvfile, delimiter=',',
+                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        spamwriter.writerow(['responseTime', 'argument', 'term'])
+        for r in conn.execute(s).fetchall():
+            spamwriter.writerow([ r[2], r[1], r[0] ])
+
+        data = pd.read_csv(file_name)
+        formula = 'responseTime ~ C(argument) + C(term) + C(argument):C(term)'
+        model = ols(formula, data).fit()
+        print model
+        aov_table = anova_lm(model, typ=2)
+        print aov_table
 
 def getAnswersTTest():
     # Query to get the t-test between two sample of answers
@@ -207,3 +238,4 @@ write_json_file('t-test.json', json_data)
 # getParticipantsGroupedByGenderAndAge()
 getParticipantsGroupedByGender()
 getParticipantsGroupedByAge()
+getResponseTimeAnova()
