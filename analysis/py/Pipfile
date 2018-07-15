@@ -7,6 +7,11 @@ name = "pypi"
 sqlalchemy = "*"
 scipy = "*"
 xlrd = "*"
+panda = "*"
+pyvttbl = "*"
+statsmodels = "*"
+numpy = "*"
+matplotlib = "*"
 
 [dev-packages]
 
