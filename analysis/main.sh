@@ -29,6 +29,7 @@ while getopts ':hw:s:' option; do
 				echo 'writing the db from experimental data'
 				cd py
 				rm arguments.db
+				pipenv shell
 				python create_db.py
 				python set_db.py
 			else
