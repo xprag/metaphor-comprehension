@@ -195,9 +195,9 @@ def getResponseTimeAnova():
         data = pd.read_csv(file_name)
         formula = 'responseTime ~ C(argument) + C(term) + C(argument):C(term)'
         model = ols(formula, data).fit()
-        print model
-        aov_table = anova_lm(model, typ=2)
-        print aov_table
+    print "\n\n####### getResponseTimeAnova negative #######"
+    aov_table = anova_lm(model, typ=2)
+    print aov_table
 
 def getAnswersAnova():
     s = text("""
@@ -219,14 +219,14 @@ def getAnswersAnova():
         for r in conn.execute(s).fetchall():
             spamwriter.writerow([ r[1], r[2], r[3] ])
 
-        print "#######", file_name
+
     with open(file_name, 'r') as csvfile:
         data = pd.read_csv(file_name)
         formula = 'answers ~ C(argument) + C(term) + C(argument):C(term)'
         model = ols(formula, data).fit()
-        print model
         aov_table = anova_lm(model, typ=2)
-        print aov_table
+    print "\n\n####### getAnswersAnova #######"
+    print aov_table
 
 def getAnswersTTest():
     # Query to get the t-test between two sample of answers
