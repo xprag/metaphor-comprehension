@@ -5,13 +5,13 @@
     ], function () {
         return function (label) {
             label = label
-                .replace(/^O_/, 'Omonimia<br>')
-                .replace(/^P_/, 'Polisemia<br>')
-                .replace(/^L_/, 'Metafore lessicalizzate<br>')
-                .replace(/^V_/, 'Metafore vive<br>')
-                .replace(/TPTC$/, 'True Premises, True Conclusion')
-                .replace(/TPFC$/, 'True Premises, False Conclusion')
-                .replace(/TPPC$/, 'True Premises, Plausible Conclusion')
+                .replace(/^O_/, 'H<br>')
+                .replace(/^P_/, 'P<br>')
+                .replace(/^L_/, 'CM<br>')
+                .replace(/^V_/, 'NM<br>')
+                .replace(/TPTC$/, 'TP, TC')
+                .replace(/TPFC$/, 'TP, FC')
+                .replace(/TPPC$/, 'TP, PC')
                 .replace(/distrattore_distrattore/, 'Distrattore');
 
             return label;
