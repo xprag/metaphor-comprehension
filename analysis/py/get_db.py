@@ -143,7 +143,8 @@ def getResponseTimeTTest():
         FROM argument, person
         WHERE
         person.id = argument.person_id and
-        argument_block <> 'P' and person.valid = 1 and
+        response_to_question = 1 and
+        argument_block <> 'P' and person.valid = 0 and
         tw_type <> 'distrattore'
         group by tw_type, argument_type;
     """)
@@ -166,7 +167,7 @@ def getResponseTimeTTest():
         mean_b = round(mean(b), 2)
         std_a = round(std(a), 2)
         std_b = round(std(b), 2)
-        result[label] = around([t, p, mean_a, std_a, mean_b, std_b], decimals = 3).tolist()
+        result[label] = around([t, p * 18, mean_a, std_a, mean_b, std_b], decimals = 3).tolist()
     return result
 
 # TODO:  avoid redundancy between getResponseTimeTTest and getAnswersTTest
@@ -195,7 +196,7 @@ def getResponseTimeAnova():
         data = pd.read_csv(file_name)
         formula = 'responseTime ~ C(argument) + C(term) + C(argument):C(term)'
         model = ols(formula, data).fit()
-    print "\n\n####### getResponseTimeAnova negative #######"
+    print "\n\n####### getResponseTimeAnova #######"
     aov_table = anova_lm(model, typ=2)
     print aov_table
 
@@ -259,7 +260,7 @@ def getAnswersTTest():
         std_a = round(std(a), 2)
         std_b = round(std(b), 2)
         t, p = ttest_ind(a, b, equal_var=True)
-        result[label] = around([t, p, mean_a, std_a, mean_b, std_b], decimals=3).tolist()
+        result[label] = around([t , p * 18, mean_a, std_a, mean_b, std_b], decimals=3).tolist()
     return result
 
 # TODO - create two distinct json files after fixing the following issue
