@@ -61,11 +61,11 @@ session = DBSession()
 
 
 # It returns a list with the data xlsx files
-def get_data_files_list():
+def get_data_files_list(dir_name):
     import glob
-    return glob.glob("../../data/[0-9]*.xlsx")
+    return glob.glob("../../" + dir_name + "/[0-9]*.xlsx")
 
-data_files = get_data_files_list() 
+data_files = get_data_files_list('data')
 if len(data_files) == 0:
     print "\n ### WARNING: NO DATA FOUND, CHECK ../data/[0-9]*.xlsx ### \n"
 for data_file in data_files:
