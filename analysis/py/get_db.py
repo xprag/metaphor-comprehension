@@ -126,8 +126,26 @@ write_json_file('response-time.json', json_data)
 # TODO - create two distinct json files after fixing the following issue
 # https://github.com/Homebrew/homebrew-core/issues/11713
 json_data= {}
-json_data['answers'] = ttest.getAnswersTTest()
-json_data['times'] = ttest.getResponseTimeTTest()
+json_data['answers'] = ttest.getTTest("""
+    SELECT
+    tw_type, argument_type, group_concat(response_to_question) as responses
+    FROM argument, person
+    WHERE
+    person.id = argument.person_id and
+    argument_block <> 'P' and person.valid = 1 and
+    tw_type <> 'distrattore'
+    group by tw_type, argument_type;
+""")
+json_data['times'] = ttest.getTTest("""
+    SELECT tw_type, argument_type, group_concat(response_time) as responses
+    FROM argument, person
+    WHERE
+    person.id = argument.person_id and
+    response_to_question = 1 and
+    argument_block <> 'P' and person.valid = 0 and
+    tw_type <> 'distrattore'
+    group by tw_type, argument_type;
+""")
 write_json_file('t-test.json', json_data)
 
 # getParticipantsGroupedByGenderAndAge()
