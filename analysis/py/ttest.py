@@ -4,6 +4,8 @@ import os
 from numpy import around, array, float, mean, std, ndarray
 from itertools import combinations
 from scipy.stats import ttest_ind, f_oneway
+from collections import defaultdict
+import utility
 
 db_file_name = 'arguments.db'
 if os.path.isfile(db_file_name):
@@ -36,3 +38,21 @@ def getTTest(sql):
         t, p = ttest_ind(a, b, equal_var=True)
         result[label] = around([t , p * 18, mean_a, std_a, mean_b, std_b], decimals=3).tolist()
     return result
+
+def getTTest_2(sql):
+    s = text(sql)
+    dict = {}
+    for row in conn.execute(s).fetchall():
+        if not row['key'] in dict:
+            dict[row['key']] = []
+        dict[row['key']].append(row['value'])
+    for comparison in utility.get_comparisons():
+        # print dict[comparison[0]], dict[comparison[1]]
+        range1 = dict[comparison[0]]
+        range2 = dict[comparison[1]]
+        t, p = ttest_ind(range1, range2, equal_var=True)
+        mean1 = round(mean(range1), 2)
+        mean2 = round(mean(range2), 2)
+        std_1 = round(std(range1), 2)
+        std_2 = round(std(range2), 2)
+        print comparison[0],'/',comparison[1], t, p
