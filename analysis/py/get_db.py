@@ -127,13 +127,14 @@ write_json_file('response-time.json', json_data)
 
 # TODO - create two distinct json files after fixing the following issue
 # https://github.com/Homebrew/homebrew-core/issues/11713
-json_data= {}
-json_data['answers'] = ttest.getTTest(query.get_response_to_question_sql())
-json_data['times'] = ttest.getTTest(query.get_response_time_sql())
-write_json_file('t-test.json', json_data)
+# json_data= {}
+# json_data['answers'] = ttest.getTTest(query.get_response_to_question_sql())
+# json_data['times'] = ttest.getTTest(query.get_response_time_sql())
+# write_json_file('t-test.json', json_data)
 
 # getParticipantsGroupedByGenderAndAge()
-getParticipantsGroupedByGender()
-getParticipantsGroupedByAge()
-anova.getResponseTimeAnova()
-anova.getAnswersAnova()
+# getParticipantsGroupedByGender()
+# getParticipantsGroupedByAge()
+# anova.getResponseTimeAnova()
+# anova.getAnswersAnova()
+ttest.getTTest_2(query.get_rt_sql());
