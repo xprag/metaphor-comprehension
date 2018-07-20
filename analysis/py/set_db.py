@@ -5,6 +5,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from create_db import Argument, Base, Person
 
+def get_correct_tw_type_name(tw_type_name):
+    dict = {
+        'O': 'H',
+        'V': 'NM',
+        'L': 'CM'
+    }
+    if tw_type_name in dict:
+        return dict[tw_type_name]
+    return tw_type_name
 
 def read_and_store(data_file):
     print data_file
@@ -31,7 +40,7 @@ def read_and_store(data_file):
     # Insert Arguments  in the argument table
     for rx in range(1, sh.nrows):
         if (sh.cell(rx, 15).value != ''):
-            tw_type = sh.cell(rx, 1).value
+            tw_type = get_correct_tw_type_name(sh.cell(rx, 1).value)
             argument_type = sh.cell(rx, 4).value
             response_to_question = math.trunc(sh.cell(rx, 15).value)
             response_time = sh.cell(rx, 18).value
