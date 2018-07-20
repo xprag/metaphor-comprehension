@@ -77,5 +77,5 @@ def get_data_files_list(dir_name):
 data_files = get_data_files_list('data')
 if len(data_files) == 0:
     print "\n ### WARNING: NO DATA FOUND, CHECK ../data/[0-9]*.xlsx ### \n"
-for data_file in data_files[:2]:
+for data_file in data_files:
     read_and_store(data_file)
