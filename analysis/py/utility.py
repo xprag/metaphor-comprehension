@@ -44,3 +44,10 @@ def get_comparisons_letterali():
     return [
         ['H+PM', 'CM+NM']
     ]
+
+def get_comparisons_argumentType_vs_literalAndMetaphor():
+    return [
+        ['TPTC_H+P', 'TPTC_CM+NM'],
+        ['TPFC_H+P', 'TPFC_CM+NM'],
+        ['TPPC_H+P', 'TPPC_CM+NM']
+    ]
