@@ -130,7 +130,7 @@ write_json_file('response-time.json', json_data)
 # TODO - create two distinct json files after fixing the following issue
 # https://github.com/Homebrew/homebrew-core/issues/11713
 json_data= {}
-query = Query(1) # 0 -> wrong answers, 1 -> correct answers
+query = Query(0) # 0 -> wrong answers, 1 -> correct answers
 json_data['answers'] = ttest.getTTest(query.get_response_to_question_sql())
 json_data['times'] = ttest.getTTest(query.get_response_time_sql())
 write_json_file('t-test.json', json_data)
@@ -155,10 +155,10 @@ ttest.getTTest2(query.get_accurancy_argumentType(), utility.get_comparisons_argu
 print '\n\n\n ACCURACY per middleTerm'
 ttest.getTTest2(query.get_accurancy_middleTerm(), utility.get_comparisons_middleTerm())
 
-print '\n\n\n#### ResponseTime per argumentType and middleTerm #####'
+print '\n\n\n#### ResponseTime per argumentType and middleTerm #### ' + query.correctText
 ttest.getTTest2(query.get_responseTime_argumentType_middleTerm(), utility.get_comparisons())
 
-print '\n\n\n#### ResponseTime per middleTerm ####'
+print '\n\n\n#### ResponseTime per middleTerm #### ' + query.correctText
 ttest.getTTest2(query.get_responseTime_middleTerm(), utility.get_comparisons_middleTerm())
 
 print '\n\n\n#### ResponseTime per argumentType'
@@ -171,6 +171,5 @@ print '\n\n\n ACCURACY per TC / FC / PC comparando literal (H+P) e metaphorical 
 ttest.getTTest2(query.get_accurancy_argumentType_vs_literalAndMetaphor(), utility.get_comparisons_argumentType_vs_literalAndMetaphor())
 
 #print '\n\n\n ResponseTime per TC / FC / PC comparando literal (H+P) e metaphorical (CM+NM) middle terms'
-#TODO
+print '\n\n\n ### ResponseTime per TC / FC / PC comparando literal (H+P) e metaphorical (CM+NM) middle terms ' + query.correctText
 ttest.getTTest2(query.get_responseTime_argumentType_vs_literalAndMetaphor(), utility.get_comparisons_argumentType_vs_literalAndMetaphor())
-print query.get_accurancy_letterali_metafore()

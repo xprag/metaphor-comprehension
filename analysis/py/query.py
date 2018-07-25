@@ -1,6 +1,7 @@
 class Query():
 
     def __init__(self, isCorrect = 0):
+        self.correctText = '** Correct answers **' if isCorrect == 1 else ' ** Wrong answers **'
         self.isCorrect = str(isCorrect)
 
     def get_response_time_sql(self):
