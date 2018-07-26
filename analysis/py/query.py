@@ -11,6 +11,12 @@ class Query():
         return self._get_query('response_to_question', 'tw_type')
 
     def get_accurancy_argumentType_middleTerm(self):
+        return self._get_query_anova('response_to_question')
+
+    def get_responseTime_argumentType_middleTerm(self):
+        return self._get_query_anova('response_time')
+
+    def get_accurancy_argumentTypeAndMiddleTerm(self):
         return self._get_query('response_to_question', 'tw_type || "-" || argument_type')
 
     def get_accurancy_metafore(self):
@@ -22,7 +28,7 @@ class Query():
     def get_responseTime_middleTerm(self):
         return self._get_query('response_time', 'tw_type', 'AND response_to_question = ' + self.isCorrect)
 
-    def get_responseTime_argumentType_middleTerm(self):
+    def get_responseTime_argumentTypeAndMiddleTerm(self):
         return self._get_query('response_time', 'tw_type || "-" || argument_type',\
             'AND response_to_question = ' + self.isCorrect)
 
@@ -56,7 +62,7 @@ class Query():
             'AND (tw_type = "H" OR tw_type = "P")  AND response_to_question = ' + self.isCorrect)
 
     def _get_query(self, timeOrAccurancy, columns, condition = ''):
-        str = '''
+        return '''
             SELECT
                 person.id as user_id,
                 avg(%s) AS value,
@@ -70,7 +76,19 @@ class Query():
             %s -- condition
             GROUP BY person.id, key;
         ''' % (timeOrAccurancy, columns, condition)
-        return str
+
+    def _get_query_anova(self, timeOrAccurancy):
+        return '''
+            SELECT
+                person.id, avg(%s), argument_type, tw_type
+            FROM argument, person
+            WHERE
+                person.id = argument.person_id AND
+                argument_block <> 'P' AND person.valid = 1 AND
+                tw_type <> 'distrattore'
+            GROUP BY person.id, argument_type, tw_type
+            ORDER BY person.id, argument_type, tw_type;
+        ''' % (timeOrAccurancy)
 
     # TODO rename or delete
     def get_response_to_question_sql(self):
