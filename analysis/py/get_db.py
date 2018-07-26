@@ -7,7 +7,7 @@ from scipy.stats import f_oneway
 from itertools import combinations
 from numpy import around, array, float, mean, std, ndarray
 import json, sys, os, csv
-# my lib
+# my libs
 import ttest, anova, comparisons
 from query import Query
 
@@ -139,11 +139,12 @@ getParticipantsGroupedByGender()
 getParticipantsGroupedByAge()
 # anova.getResponseTimeAnova()
 #anova.getAnswersAnova()
-print anova.getAnswersAnova('')
+print anova.getAnswersAnova()
+print anova.getResponseTimeAnova()
 exit(0)
 
 print '\n\n\n ACCURACY per argumentType and middleTerm'
-ttest.getTTest2(query.get_accurancy_argumentType_middleTerm(), utility.get_comparisons())
+ttest.getTTest2(query.get_accurancy_argumentTypeAndMiddleTerm(), utility.get_comparisons())
 
 print '\n\n\n ACCURACY per argumentType'
 ttest.getTTest2(query.get_accurancy_argumentType(), utility.get_comparisons_argumentType())
@@ -152,7 +153,7 @@ print '\n\n\n ACCURACY per middleTerm'
 ttest.getTTest2(query.get_accurancy_middleTerm(), utility.get_comparisons_middleTerm())
 
 print '\n\n\n#### ResponseTime per argumentType and middleTerm #### ' + query.correctText
-ttest.getTTest2(query.get_responseTime_argumentType_middleTerm(), utility.get_comparisons())
+ttest.getTTest2(query.get_responseTime_argumentTypeAndMiddleTerm(), utility.get_comparisons())
 
 print '\n\n\n#### ResponseTime per middleTerm #### ' + query.correctText
 ttest.getTTest2(query.get_responseTime_middleTerm(), utility.get_comparisons_middleTerm())
