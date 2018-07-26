@@ -8,7 +8,7 @@ from itertools import combinations
 from numpy import around, array, float, mean, std, ndarray
 import json, sys, os, csv
 # my lib
-import ttest, anova, utility
+import ttest, anova, comparisons
 from query import Query
 
 db_file_name = 'arguments.db'
@@ -137,14 +137,10 @@ write_json_file('t-test.json', json_data)
 
 getParticipantsGroupedByGender()
 getParticipantsGroupedByAge()
-anova.getResponseTimeAnova()
-anova.getAnswersAnova()
-
-# print '\n\n\n### TTEST responseTime on *** CORRECT ANSWER *** argumentType_middleTerm'
-# ttest.getTTest2(query.get_query_argumentType_middleTerm(1), utility.get_comparisons());
-# print '\n### TTEST responseTime on *** WRONG answer ***   argumentType_middleTerm'
-# ttest.getTTest2(query.get_query_argumentType_middleTerm(0), utility.get_comparisons());
-#print query.get_responseTime_argumentTypeAndLiteral()
+# anova.getResponseTimeAnova()
+#anova.getAnswersAnova()
+print anova.getAnswersAnova('')
+exit(0)
 
 print '\n\n\n ACCURACY per argumentType and middleTerm'
 ttest.getTTest2(query.get_accurancy_argumentType_middleTerm(), utility.get_comparisons())
