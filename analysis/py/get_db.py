@@ -130,7 +130,7 @@ write_json_file('response-time.json', json_data)
 # TODO - create two distinct json files after fixing the following issue
 # https://github.com/Homebrew/homebrew-core/issues/11713
 json_data= {}
-query = Query(0) # 0 -> wrong answers, 1 -> correct answers
+query = Query(1) # 0 -> wrong answers, 1 -> correct answers
 json_data['answers'] = ttest.getTTest(query.get_response_to_question_sql())
 json_data['times'] = ttest.getTTest(query.get_response_time_sql())
 write_json_file('t-test.json', json_data)
@@ -139,9 +139,10 @@ getParticipantsGroupedByGender()
 getParticipantsGroupedByAge()
 # anova.getResponseTimeAnova()
 #anova.getAnswersAnova()
+print "\n\n####### Anova Accurancy #######"
 print anova.getAnswersAnova()
+print "\n\n####### Anova Response Time #######" + query.correctText
 print anova.getResponseTimeAnova()
-exit(0)
 
 print '\n\n\n ACCURACY per argumentType and middleTerm'
 ttest.getTTest2(query.get_accurancy_argumentTypeAndMiddleTerm(), utility.get_comparisons())
