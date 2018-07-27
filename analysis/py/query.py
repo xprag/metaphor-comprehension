@@ -10,11 +10,13 @@ class Query():
     def get_accurancy_middleTerm(self):
         return self._get_query('response_to_question', 'tw_type')
 
+    # ANOVA
     def get_accurancy_argumentType_middleTerm(self):
         return self._get_query_anova('response_to_question')
 
+    # ANOVA
     def get_responseTime_argumentType_middleTerm(self):
-        return self._get_query_anova('response_time')
+        return self._get_query_anova('response_time', 'AND response_to_question = ' + self.isCorrect)
 
     def get_accurancy_argumentTypeAndMiddleTerm(self):
         return self._get_query('response_to_question', 'tw_type || "-" || argument_type')
@@ -77,7 +79,7 @@ class Query():
             GROUP BY person.id, key;
         ''' % (timeOrAccurancy, columns, condition)
 
-    def _get_query_anova(self, timeOrAccurancy):
+    def _get_query_anova(self, timeOrAccurancy, condition = ''):
         return '''
             SELECT
                 person.id, avg(%s), argument_type, tw_type
@@ -86,9 +88,10 @@ class Query():
                 person.id = argument.person_id AND
                 argument_block <> 'P' AND person.valid = 1 AND
                 tw_type <> 'distrattore'
+                %s
             GROUP BY person.id, argument_type, tw_type
             ORDER BY person.id, argument_type, tw_type;
-        ''' % (timeOrAccurancy)
+        ''' % (timeOrAccurancy, condition)
 
     # TODO rename or delete
     def get_response_to_question_sql(self):
