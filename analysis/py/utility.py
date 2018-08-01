@@ -1,46 +1,23 @@
-def get_comparisons():
-    # L -> CM
-    # V -> NM
-    # O -> H
-    return [
-        ['H-TPTC', 'P-TPTC'],
-        ['H-TPFC', 'P-TPFC'],
-        ['H-TPPC', 'P-TPPC'],
-        ['H-TPTC', 'CM-TPTC'],
-        ['H-TPFC', 'CM-TPFC'],
-        ['H-TPPC', 'CM-TPPC'],
-        ['H-TPTC', 'NM-TPTC'],
-        ['H-TPFC', 'NM-TPFC'],
-        ['H-TPPC', 'NM-TPPC'],
-        ['P-TPTC', 'CM-TPTC'],
-        ['P-TPFC', 'CM-TPFC'],
-        ['P-TPPC', 'CM-TPPC'],
-        ['P-TPTC', 'NM-TPTC'],
-        ['P-TPFC', 'NM-TPFC'],
-        ['P-TPPC', 'NM-TPPC'],
-        ['CM-TPTC', 'NM-TPTC'],
-        ['CM-TPFC', 'NM-TPFC'],
-        ['CM-TPPC', 'NM-TPPC']
-    ]
+import csv
+import pandas as pd
+from statsmodels.formula.api import ols
 
-def get_comparisons_middleTerm():
-    return [
-        ['H', 'P'],
-        ['H', 'CM'],
-        ['H', 'NM'],
-        ['P', 'CM'],
-        ['P', 'NM'],
-        ['CM', 'NM']
-    ]
+class Utility():
 
-def get_comparisons_argumentType():
-    return [
-        ['TPTC', 'TPFC'],
-        ['TPTC', 'TPPC'],
-        ['TPFC', 'TPPC']
-    ]
+    def __init__(self, connection):
+        self.connection = connection
+        self.file_name = '/tmp/_temp.csv'
 
-def get_comparisons_letterali():
-    return [
-        ['H+PM', 'CM+NM']
-    ]
+    def write_file(self, query):
+        with open(self.file_name, 'w') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            spamwriter.writerow(['timeOrAccurancy', 'argument', 'middleTerm'])
+            for r in self.connection.execute(query).fetchall():
+                spamwriter.writerow([ r[1], r[2], r[3] ])
+
+    def get_model(self):
+        with open(self.file_name, 'r') as csvfile:
+            data = pd.read_csv(self.file_name)
+            formula = 'timeOrAccurancy ~ C(argument) + C(middleTerm) + C(argument):C(middleTerm)'
+            return ols(formula, data).fit()
