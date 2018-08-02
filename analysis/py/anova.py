@@ -19,7 +19,7 @@ conn = engine.connect()
 utility = Utility(conn)
 
 def getAnswersAnova():
-    utility.write_file(query.get_accurancy_argumentType_middleTerm())
+    utility.write_file(query.get_accuracy_argumentType_middleTerm())
     print anova_lm(utility.get_model(), typ=2)
 
 def getResponseTimeAnova():

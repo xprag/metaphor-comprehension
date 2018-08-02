@@ -4,24 +4,24 @@ class Query():
         self.correctText = '** Correct answers **' if isCorrect == 1 else ' ** Wrong answers **'
         self.isCorrect = str(isCorrect)
 
-    def get_accurancy_argumentType(self):
+    def get_accuracy_argumentType(self):
         return self._get_query('response_to_question', 'argument_type')
 
-    def get_accurancy_middleTerm(self):
+    def get_accuracy_middleTerm(self):
         return self._get_query('response_to_question', 'tw_type')
 
     # ANOVA
-    def get_accurancy_argumentType_middleTerm(self):
+    def get_accuracy_argumentType_middleTerm(self):
         return self._get_query_anova('response_to_question')
 
     # ANOVA
     def get_responseTime_argumentType_middleTerm(self):
         return self._get_query_anova('response_time', 'AND response_to_question = ' + self.isCorrect)
 
-    def get_accurancy_argumentTypeAndMiddleTerm(self):
+    def get_accuracy_argumentTypeAndMiddleTerm(self):
         return self._get_query('response_to_question', 'tw_type || "-" || argument_type')
 
-    def get_accurancy_metafore(self):
+    def get_accuracy_metafore(self):
         return self._get_query('response_to_question', '"CM+NM"', 'AND (tw_type = "CM" OR tw_type = "NM")')
 
     def get_responseTime_argumentType(self):
@@ -34,25 +34,25 @@ class Query():
         return self._get_query('response_time', 'tw_type || "-" || argument_type',\
             'AND response_to_question = ' + self.isCorrect)
 
-    def _get_accurancy_letterali(self):
+    def _get_accuracy_letterali(self):
         return self._get_query('response_to_question', '"H+PM"', 'AND (tw_type = "H" OR tw_type = "P")')
 
-    def get_accurancy_letterali_metafore(self):
-        return self._get_accurancy_letterali().rstrip()[:-1] + ' UNION ' + self.get_accurancy_metafore()
+    def get_accuracy_letterali_metafore(self):
+        return self._get_accuracy_letterali().rstrip()[:-1] + ' UNION ' + self.get_accuracy_metafore()
 
     ###  argument_type (TC/FC/PC) vs literal (H+P) e metaphorical (CM+NM) middle terms
-    def get_accurancy_argumentType_vs_literalAndMetaphor(self):
-        return self._get_accurancy_argumentTypeAndLiteral().rstrip()[:-1] + ' UNION ' + self._get_accurancy_argumentTypeAndMetaphor()
+    def get_accuracy_argumentType_vs_literalAndMetaphor(self):
+        return self._get_accuracy_argumentTypeAndLiteral().rstrip()[:-1] + ' UNION ' + self._get_accuracy_argumentTypeAndMetaphor()
 
     ###  argument_type (TC/FC/PC) vs literal (H+P) e metaphorical (CM+NM) middle terms
     def get_responseTime_argumentType_vs_literalAndMetaphor(self):
         return self._get_responseTime_argumentTypeAndLiteral().rstrip()[:-1] + ' UNION ' +\
             self._get_responseTime_argumentTypeAndMetaphor()
 
-    def _get_accurancy_argumentTypeAndLiteral(self):
+    def _get_accuracy_argumentTypeAndLiteral(self):
         return self._get_query('response_to_question', 'argument_type || "_" || "CM+NM"', 'AND (tw_type = "CM" OR tw_type = "NM")')
 
-    def _get_accurancy_argumentTypeAndMetaphor(self):
+    def _get_accuracy_argumentTypeAndMetaphor(self):
         return self._get_query('response_to_question', 'argument_type || "_" || "H+P"', 'AND (tw_type = "H" OR tw_type = "P")')
 
     def _get_responseTime_argumentTypeAndLiteral(self):
@@ -63,7 +63,7 @@ class Query():
         return self._get_query('response_time', 'argument_type || "_" || "H+P"', \
             'AND (tw_type = "H" OR tw_type = "P")  AND response_to_question = ' + self.isCorrect)
 
-    def _get_query(self, timeOrAccurancy, columns, condition = ''):
+    def _get_query(self, timeOraccuracy, columns, condition = ''):
         return '''
             SELECT
                 person.id as user_id,
@@ -77,9 +77,9 @@ class Query():
             tw_type <> 'distrattore'
             %s -- condition
             GROUP BY person.id, key;
-        ''' % (timeOrAccurancy, columns, condition)
+        ''' % (timeOraccuracy, columns, condition)
 
-    def _get_query_anova(self, timeOrAccurancy, condition = ''):
+    def _get_query_anova(self, timeOraccuracy, condition = ''):
         return '''
             SELECT
                 person.id, avg(%s), argument_type, tw_type
@@ -91,7 +91,7 @@ class Query():
                 %s
             GROUP BY person.id, argument_type, tw_type
             ORDER BY person.id, argument_type, tw_type;
-        ''' % (timeOrAccurancy, condition)
+        ''' % (timeOraccuracy, condition)
 
     # TODO rename or delete
     def get_response_to_question_sql(self):
