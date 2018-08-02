@@ -1,10 +1,9 @@
-import csv
-import pandas as pd
+import csv, pandas
 from statsmodels.formula.api import ols
 
 class Utility():
 
-    def __init__(self, connection):
+    def __init__(self, connection = ''):
         self.connection = connection
         self.file_name = '/tmp/_temp.csv'
 
@@ -18,6 +17,6 @@ class Utility():
 
     def get_model(self):
         with open(self.file_name, 'r') as csvfile:
-            data = pd.read_csv(self.file_name)
+            data = pandas.read_csv(self.file_name)
             formula = 'timeOrAccurancy ~ C(argument) + C(middleTerm) + C(argument):C(middleTerm)'
             return ols(formula, data).fit()
