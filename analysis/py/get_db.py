@@ -139,6 +139,7 @@ getParticipantsGroupedByGender()
 getParticipantsGroupedByAge()
 # anova.getResponseTimeAnova()
 #anova.getAnswersAnova()
+# TODO The Anova resuts should follow APA Style http://my.ilstu.edu/~jhkahn/apastats.html
 print "\n\n####### Anova accuracy #######"
 print anova.getAnswersAnova()
 print "\n\n####### Anova Response Time #######" + query.correctText
