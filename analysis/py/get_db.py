@@ -145,29 +145,29 @@ print "\n\n####### Anova Response Time #######" + query.correctText
 print anova.getResponseTimeAnova()
 
 print '\n\n\n ACCURACY per argumentType and middleTerm'
-ttest.getTTest2(query.get_accurancy_argumentTypeAndMiddleTerm(), utility.get_comparisons())
+ttest.getTTest2(query.get_accurancy_argumentTypeAndMiddleTerm(), comparisons.get_comparisons())
 
 print '\n\n\n ACCURACY per argumentType'
-ttest.getTTest2(query.get_accurancy_argumentType(), utility.get_comparisons_argumentType())
+ttest.getTTest2(query.get_accurancy_argumentType(), comparisons.get_comparisons_argumentType())
 
 print '\n\n\n ACCURACY per middleTerm'
-ttest.getTTest2(query.get_accurancy_middleTerm(), utility.get_comparisons_middleTerm())
+ttest.getTTest2(query.get_accurancy_middleTerm(), comparisons.get_comparisons_middleTerm())
 
 print '\n\n\n#### ResponseTime per argumentType and middleTerm #### ' + query.correctText
-ttest.getTTest2(query.get_responseTime_argumentTypeAndMiddleTerm(), utility.get_comparisons())
+ttest.getTTest2(query.get_responseTime_argumentTypeAndMiddleTerm(), comparisons.get_comparisons())
 
 print '\n\n\n#### ResponseTime per middleTerm #### ' + query.correctText
-ttest.getTTest2(query.get_responseTime_middleTerm(), utility.get_comparisons_middleTerm())
+ttest.getTTest2(query.get_responseTime_middleTerm(), comparisons.get_comparisons_middleTerm())
 
 print '\n\n\n#### ResponseTime per argumentType'
-ttest.getTTest2(query.get_responseTime_argumentType(), utility.get_comparisons_argumentType())
+ttest.getTTest2(query.get_responseTime_argumentType(), comparisons.get_comparisons_argumentType())
 
 print '\n\n\n ACCURACY per letterali_metafore'
-ttest.getTTest2(query.get_accurancy_letterali_metafore(), utility.get_comparisons_letterali())
+ttest.getTTest2(query.get_accurancy_letterali_metafore(), comparisons.get_comparisons_letterali())
 
 print '\n\n\n ACCURACY per TC / FC / PC comparando literal (H+P) e metaphorical (CM+NM) middle terms'
-ttest.getTTest2(query.get_accurancy_argumentType_vs_literalAndMetaphor(), utility.get_comparisons_argumentType_vs_literalAndMetaphor())
+ttest.getTTest2(query.get_accurancy_argumentType_vs_literalAndMetaphor(), comparisons.get_comparisons_argumentType_vs_literalAndMetaphor())
 
 #print '\n\n\n ResponseTime per TC / FC / PC comparando literal (H+P) e metaphorical (CM+NM) middle terms'
 print '\n\n\n ### ResponseTime per TC / FC / PC comparando literal (H+P) e metaphorical (CM+NM) middle terms ' + query.correctText
-ttest.getTTest2(query.get_responseTime_argumentType_vs_literalAndMetaphor(), utility.get_comparisons_argumentType_vs_literalAndMetaphor())
+ttest.getTTest2(query.get_responseTime_argumentType_vs_literalAndMetaphor(), comparisons.get_comparisons_argumentType_vs_literalAndMetaphor())
